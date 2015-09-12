@@ -1,0 +1,13 @@
+#NetBeans specific
+core
+nbproject/*
+!nbproject/project.properties
+!nbproject/project.xml
+
+#Java bullshit :P
+*.class
+
+#maven specific
+dist/
+build/
+target/
