@@ -1,50 +1,108 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DataAccess.Entities;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-/**
- *
- * @author dwarandae
- */
 @Entity
+@Table(name = "bill")
 public class Bill implements Serializable {
+    
     private static final long serialVersionUID = 1L;
+    
     @Id
+    @Column(name = "bill_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long billId;
 
-    public Long getId() {
-        return id;
+    @Column(name = "bill_date")
+    private Date billDate;
+    
+    //This will change
+    @Column(name = "bill_payment_method")
+    private String paymentMethod;
+    
+    //TO-DO: ERROR?
+    @OneToOne(mappedBy = "purchase")
+    private Purchase purchase;
+
+    public Bill() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Bill(Date billDate, String paymentMethod, Purchase purchase) {
+        this.billDate = billDate;
+        this.paymentMethod = paymentMethod;
+        this.purchase = purchase;
+    }
+
+    public Long getBillId() {
+        return billId;
+    }
+
+    public void setBillId(Long billId) {
+        this.billId = billId;
+    }
+
+    public Date getBillDate() {
+        return billDate;
+    }
+
+    public void setBillDate(Date billDate) {
+        this.billDate = billDate;
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public Purchase getPurchase() {
+        return purchase;
+    }
+
+    public void setPurchase(Purchase purchase) {
+        this.purchase = purchase;
     }
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.billId);
+        hash = 97 * hash + Objects.hashCode(this.billDate);
+        hash = 97 * hash + Objects.hashCode(this.paymentMethod);
+        hash = 97 * hash + Objects.hashCode(this.purchase);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Bill)) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        Bill other = (Bill) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Bill other = (Bill) obj;
+        if (!Objects.equals(this.billId, other.billId)) {
+            return false;
+        }
+        if (!Objects.equals(this.billDate, other.billDate)) {
+            return false;
+        }
+        if (!Objects.equals(this.paymentMethod, other.paymentMethod)) {
+            return false;
+        }
+        if (!Objects.equals(this.purchase, other.purchase)) {
             return false;
         }
         return true;
@@ -52,7 +110,8 @@ public class Bill implements Serializable {
 
     @Override
     public String toString() {
-        return "DataAccess.Entities.Bill[ id=" + id + " ]";
+        return "Bill{" + "billId=" + billId + ", billDate=" + billDate + ", paymentMethod=" + paymentMethod + ", purchase=" + purchase + '}';
     }
+    
     
 }
