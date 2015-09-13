@@ -4,44 +4,45 @@ import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "inventory_item")
-public class InventoryItem implements Serializable {
+@Table(name = "item")
+public class Item implements Serializable {
     
     private static final long serialVersionUID = 1L;
     
     @Id
-    @Column(name = "inventory_item_id")
+    @Column(name = "item_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long inventoryItemId;
+    private Long itemId;
     
-    @Column(name = "inventory_item_amount")
+    @Column(name = "item_amount")
     private int amount;
-
-    //TO-DO: ERROR?
-    @OneToOne(mappedBy = "inventory_item")
+    
+    //The price of the item is the prices of the drug! (is not static)
+    @ManyToOne(fetch=FetchType.LAZY)
     private Drug drug;
 
-    public InventoryItem() {
+    public Item() {
     }
 
-    public InventoryItem(int amount, Drug drug) {
+    public Item(int amount, Drug drug) {
         this.amount = amount;
         this.drug = drug;
     }
-
-    public Long getInventoryItemId() {
-        return inventoryItemId;
+    
+    public Long getItemId() {
+        return itemId;
     }
 
-    public void setInventoryItemId(Long inventoryItemId) {
-        this.inventoryItemId = inventoryItemId;
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
     }
 
     public int getAmount() {
@@ -62,10 +63,10 @@ public class InventoryItem implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 37 * hash + Objects.hashCode(this.inventoryItemId);
-        hash = 37 * hash + this.amount;
-        hash = 37 * hash + Objects.hashCode(this.drug);
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.itemId);
+        hash = 97 * hash + this.amount;
+        hash = 97 * hash + Objects.hashCode(this.drug);
         return hash;
     }
 
@@ -77,8 +78,8 @@ public class InventoryItem implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final InventoryItem other = (InventoryItem) obj;
-        if (!Objects.equals(this.inventoryItemId, other.inventoryItemId)) {
+        final Item other = (Item) obj;
+        if (!Objects.equals(this.itemId, other.itemId)) {
             return false;
         }
         if (this.amount != other.amount) {
@@ -92,8 +93,7 @@ public class InventoryItem implements Serializable {
 
     @Override
     public String toString() {
-        return "InventoryItem{" + "inventoryItemId=" + inventoryItemId + ", amount=" + amount + ", drug=" + drug + '}';
+        return "Item{" + "itemId=" + itemId + ", amount=" + amount + ", drug=" + drug + '}';
     }
-    
     
 }

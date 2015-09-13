@@ -1,50 +1,117 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DataAccess.Entities;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Objects;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-/**
- *
- * @author dwarandae
- */
 @Entity
+@Table(name = "purchase")
 public class Purchase implements Serializable {
+    
     private static final long serialVersionUID = 1L;
+    
     @Id
+    @Column(name = "purchase_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long purchaseId;
+    
+    @Column(name = "purchase_total_price")
+    private Long totalPrice;
+    
+    //A purchase have one and only one bill
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinTable(name = "purchase_bill",
+               joinColumns = @JoinColumn(name = "purchase_id"),
+               inverseJoinColumns = @JoinColumn(name = "bill_id")
+    )
+    private Bill bill;
+            
+    //A purchase have 1..* items
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    List<PurchaseItem> purchaseItems;
 
-    public Long getId() {
-        return id;
+    public Purchase() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Purchase(Long totalPrice, Bill bill, List<PurchaseItem> purchaseItems) {
+        this.totalPrice = totalPrice;
+        this.bill = bill;
+        this.purchaseItems = purchaseItems;
+    }
+
+    public Long getPurchaseId() {
+        return purchaseId;
+    }
+
+    public void setPurchaseId(Long purchaseId) {
+        this.purchaseId = purchaseId;
+    }
+
+    public Long getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Long totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public Bill getBill() {
+        return bill;
+    }
+
+    public void setBill(Bill bill) {
+        this.bill = bill;
+    }
+
+    public List<PurchaseItem> getPurchaseItems() {
+        return purchaseItems;
+    }
+
+    public void setPurchaseItems(List<PurchaseItem> purchaseItems) {
+        this.purchaseItems = purchaseItems;
     }
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 3;
+        hash = 67 * hash + Objects.hashCode(this.purchaseId);
+        hash = 67 * hash + Objects.hashCode(this.totalPrice);
+        hash = 67 * hash + Objects.hashCode(this.bill);
+        hash = 67 * hash + Objects.hashCode(this.purchaseItems);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Purchase)) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        Purchase other = (Purchase) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Purchase other = (Purchase) obj;
+        if (!Objects.equals(this.purchaseId, other.purchaseId)) {
+            return false;
+        }
+        if (!Objects.equals(this.totalPrice, other.totalPrice)) {
+            return false;
+        }
+        if (!Objects.equals(this.bill, other.bill)) {
+            return false;
+        }
+        if (!Objects.equals(this.purchaseItems, other.purchaseItems)) {
             return false;
         }
         return true;
@@ -52,7 +119,7 @@ public class Purchase implements Serializable {
 
     @Override
     public String toString() {
-        return "DataAccess.Entities.Purchase[ id=" + id + " ]";
-    }
+        return "Purchase{" + "purchaseId=" + purchaseId + ", totalPrice=" + totalPrice + ", bill=" + bill + ", purchaseItems=" + purchaseItems + '}';
+    }  
     
 }
