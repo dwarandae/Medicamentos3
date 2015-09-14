@@ -7,7 +7,6 @@ package Presentation.Beans;
 
 import BusinessLogic.Controllers.CustomerAccountCreation;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -16,7 +15,6 @@ import javax.faces.bean.ViewScoped;
  * @author omdej
  */
 @Named(value = "createCustomerAccountBean")
-@Dependent
 @ManagedBean
 @ViewScoped
 public class CreateCustomerAccountBean {

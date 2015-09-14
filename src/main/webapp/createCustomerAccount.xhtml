@@ -27,7 +27,7 @@
             <h:inputText value="#{createCustomerAccountBean.email}" required="true" requiredMessage="Tu email es obligatorio"/>
             <br/>
             <label>¿Afiliado a la EPS?: </label>
-            <h:inputText value="#{createCustomerAccountBean.epsCustomer}" required="true" requiredMessage="La afiliación es obligatoria"/>
+            <h:selectBooleanCheckbox value="#{createCustomerAccountBean.epsCustomer}" required="true" requiredMessage="La afiliación es obligatoria"/>
             <br/><br/>
             <h:commandButton action="#{createCustomerAccountBean.createCustomerAccount()}" value="Crear"/>
             <br/><br/>
