@@ -29,17 +29,12 @@ public class Bill implements Serializable {
     @Column(name = "bill_payment_method")
     private String paymentMethod;
     
-    //TO-DO: ERROR?
-    @OneToOne(mappedBy = "purchase")
-    private Purchase purchase;
-
     public Bill() {
     }
 
-    public Bill(Date billDate, String paymentMethod, Purchase purchase) {
+    public Bill(Date billDate, String paymentMethod) {
         this.billDate = billDate;
         this.paymentMethod = paymentMethod;
-        this.purchase = purchase;
     }
 
     public Long getBillId() {
@@ -66,21 +61,12 @@ public class Bill implements Serializable {
         this.paymentMethod = paymentMethod;
     }
 
-    public Purchase getPurchase() {
-        return purchase;
-    }
-
-    public void setPurchase(Purchase purchase) {
-        this.purchase = purchase;
-    }
-
     @Override
     public int hashCode() {
         int hash = 5;
         hash = 97 * hash + Objects.hashCode(this.billId);
         hash = 97 * hash + Objects.hashCode(this.billDate);
         hash = 97 * hash + Objects.hashCode(this.paymentMethod);
-        hash = 97 * hash + Objects.hashCode(this.purchase);
         return hash;
     }
 
@@ -102,16 +88,12 @@ public class Bill implements Serializable {
         if (!Objects.equals(this.paymentMethod, other.paymentMethod)) {
             return false;
         }
-        if (!Objects.equals(this.purchase, other.purchase)) {
-            return false;
-        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Bill{" + "billId=" + billId + ", billDate=" + billDate + ", paymentMethod=" + paymentMethod + ", purchase=" + purchase + '}';
+        return "Bill{" + "billId=" + billId + ", billDate=" + billDate + ", paymentMethod=" + paymentMethod + '}';
     }
-    
-    
+   
 }

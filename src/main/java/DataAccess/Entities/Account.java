@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+//TO-DO: refactor to abstract class
 @Entity
 @Table(name = "account")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -22,7 +23,7 @@ public class Account implements Serializable {
     
     @Id
     @Column(name = "account_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Long accountId;
     
     @NotNull
@@ -50,6 +51,7 @@ public class Account implements Serializable {
     @Column(name = "account_email", unique = true)
     private String email;
 
+   //However you SHOULD NOT create Account entities, only Customer and Administrator :/
     public Account() {
     }
 
