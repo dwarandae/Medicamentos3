@@ -7,16 +7,19 @@ package Presentation.Beans;
 
 import BusinessLogic.Controllers.ManageDrug;
 import DataAccess.Entities.Drug;
+import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
 /**
  *
  * @author root
  */
+
 @ManagedBean
-@ViewScoped
-public class ViewDrugBean {
+@SessionScoped
+public class ViewDrugBean implements Serializable {
 
     private Long drugId;
     private String brandName;
@@ -152,7 +155,7 @@ public class ViewDrugBean {
 
     
     
-    public void getMedicamento(int id){
+    public String getMedicamento(int id){
         Drug med;
         ManageDrug manageDrug=new ManageDrug();
         med=manageDrug.getMedicamento(id);
@@ -171,6 +174,8 @@ public class ViewDrugBean {
         prescriptionDrug=med.isPrescriptionDrug();
         sideEffect=med.getSideEffect();
         price=med.getPrice();
+        
+        return "viewDrug";
     }
     
 }
