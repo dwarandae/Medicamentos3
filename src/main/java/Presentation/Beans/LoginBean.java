@@ -26,10 +26,12 @@ public class LoginBean {
     
     
     public void signIn(){
+        customerURL = "Hello Customer";
+        adminURL = "Hello Admin";
         LoginController loginController = new LoginController();
         String result = loginController.login(userName, password, customerURL, adminURL);
         
-        if (result.equals("")){
+        if (!result.equals("")){
             redirectURL = result;
         }
         

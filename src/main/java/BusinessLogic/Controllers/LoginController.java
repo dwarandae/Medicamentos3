@@ -18,17 +18,21 @@ public class LoginController {
     public String login(String userName, String password, String customerURL, 
             String administratorURL){
         Account account = null; // call getAccount
+        Account accountResult = determineAccountType(account);
         String appropiatedURL = "";
         
-        if (determineAccountType(account) instanceof Customer){
+        if (accountResult != null){
+            
+            if (accountResult instanceof Customer){
             appropiatedURL = customerURL;
-        } 
-        
-        else if (determineAccountType(account) instanceof Administrator) {
-            appropiatedURL = administratorURL;
+            } 
+
+            else if (accountResult instanceof Administrator) {
+                appropiatedURL = administratorURL;
+            }
         }
         
-        return "";
+        return appropiatedURL;
     }
     
     public Account determineAccountType(Account account){
