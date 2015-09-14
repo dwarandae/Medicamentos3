@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -24,16 +23,11 @@ public class InventoryItem implements Serializable {
     @Column(name = "inventory_item_amount")
     private int amount;
 
-    //TO-DO: ERROR?
-    @OneToOne(mappedBy = "inventory_item")
-    private Drug drug;
-
     public InventoryItem() {
     }
 
-    public InventoryItem(int amount, Drug drug) {
+    public InventoryItem(int amount) {
         this.amount = amount;
-        this.drug = drug;
     }
 
     public Long getInventoryItemId() {
@@ -52,20 +46,11 @@ public class InventoryItem implements Serializable {
         this.amount = amount;
     }
 
-    public Drug getDrug() {
-        return drug;
-    }
-
-    public void setDrug(Drug drug) {
-        this.drug = drug;
-    }
-
     @Override
     public int hashCode() {
         int hash = 3;
         hash = 37 * hash + Objects.hashCode(this.inventoryItemId);
         hash = 37 * hash + this.amount;
-        hash = 37 * hash + Objects.hashCode(this.drug);
         return hash;
     }
 
@@ -84,16 +69,7 @@ public class InventoryItem implements Serializable {
         if (this.amount != other.amount) {
             return false;
         }
-        if (!Objects.equals(this.drug, other.drug)) {
-            return false;
-        }
         return true;
-    }
-
-    @Override
-    public String toString() {
-        return "InventoryItem{" + "inventoryItemId=" + inventoryItemId + ", amount=" + amount + ", drug=" + drug + '}';
-    }
-    
+    }  
     
 }

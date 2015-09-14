@@ -25,10 +25,6 @@ public class ShoppingCart implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long shoppingCartId;
     
-    //TO-DO: ERROR?
-    @OneToOne(mappedBy = "shopping_cart")
-    private Customer customer;
-    
     //A ShoppingCart can have 0..* Items
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     List<Item> items;
@@ -40,25 +36,12 @@ public class ShoppingCart implements Serializable {
         this.items = items;
     }
 
-    public ShoppingCart(Customer customer, List<Item> items) {
-        this.customer = customer;
-        this.items = items;
-    }
-
     public Long getShoppingCartId() {
         return shoppingCartId;
     }
 
     public void setShoppingCartId(Long shoppingCartId) {
         this.shoppingCartId = shoppingCartId;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
     }
 
     public List<Item> getItems() {
@@ -73,7 +56,6 @@ public class ShoppingCart implements Serializable {
     public int hashCode() {
         int hash = 5;
         hash = 29 * hash + Objects.hashCode(this.shoppingCartId);
-        hash = 29 * hash + Objects.hashCode(this.customer);
         hash = 29 * hash + Objects.hashCode(this.items);
         return hash;
     }
@@ -90,9 +72,6 @@ public class ShoppingCart implements Serializable {
         if (!Objects.equals(this.shoppingCartId, other.shoppingCartId)) {
             return false;
         }
-        if (!Objects.equals(this.customer, other.customer)) {
-            return false;
-        }
         if (!Objects.equals(this.items, other.items)) {
             return false;
         }
@@ -101,7 +80,7 @@ public class ShoppingCart implements Serializable {
 
     @Override
     public String toString() {
-        return "ShoppingCart{" + "shoppingCartId=" + shoppingCartId + ", customer=" + customer + ", items=" + items + '}';
+        return "ShoppingCart{" + "shoppingCartId=" + shoppingCartId + ", items=" + items + '}';
     }
     
 }

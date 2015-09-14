@@ -106,7 +106,24 @@ public class Drug implements Serializable {
 
     public Drug() {
     }
-
+    
+    public Drug(String brandName, String genericName, String chemicalName, String pharmaceuticalCompany, String dosage, String classification, String form, String use, String direction, String warning, boolean prescriptionDrug, String sideEffect, long price) {
+        this.brandName = brandName;
+        this.genericName = genericName;
+        this.chemicalName = chemicalName;
+        this.pharmaceuticalCompany = pharmaceuticalCompany;
+        this.dosage = dosage;
+        this.classification = classification;
+        this.form = form;
+        this.use = use;
+        this.direction = direction;
+        this.warning = warning;
+        this.prescriptionDrug = prescriptionDrug;
+        this.sideEffect = sideEffect;
+        this.price = price;
+        this.inventoryItem = new InventoryItem(0); /*Or a Factory?*/
+    }
+    
     public Drug(String brandName, String genericName, String chemicalName, String pharmaceuticalCompany, String dosage, String classification, String form, String use, String direction, String warning, boolean prescriptionDrug, String sideEffect, long price, InventoryItem inventoryItem) {
         this.brandName = brandName;
         this.genericName = genericName;
@@ -122,6 +139,23 @@ public class Drug implements Serializable {
         this.sideEffect = sideEffect;
         this.price = price;
         this.inventoryItem = inventoryItem;
+    }
+    
+    public Drug(String brandName, String genericName, String chemicalName, String pharmaceuticalCompany, String dosage, String classification, String form, String use, String direction, String warning, boolean prescriptionDrug, String sideEffect, long price, int amount) {
+        this.brandName = brandName;
+        this.genericName = genericName;
+        this.chemicalName = chemicalName;
+        this.pharmaceuticalCompany = pharmaceuticalCompany;
+        this.dosage = dosage;
+        this.classification = classification;
+        this.form = form;
+        this.use = use;
+        this.direction = direction;
+        this.warning = warning;
+        this.prescriptionDrug = prescriptionDrug;
+        this.sideEffect = sideEffect;
+        this.price = price;
+        this.inventoryItem = new InventoryItem(amount);
     }
 
     public Long getDrugId() {
