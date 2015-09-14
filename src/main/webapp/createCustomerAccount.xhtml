@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Crear cuenta</title>
+    </h:head>
+    <h:body>
+        <h1>Pidefarm</h1>
+        <br/>
+        <h3>Crear cuenta</h3>
+        <br/><br/>
+        <h:form>
+            <label>Nombre de la cuenta: </label>
+            <h:inputText value="#{createCustomerAccountBean.username}" required="true" requiredMessage="El nombre de la cuenta es obligatorio"/>
+            <br/>
+            <label>Contraseña: </label>
+            <h:inputSecret value="#{createCustomerAccountBean.password}" required="true" requiredMessage="La contraseña es obligatoria"/>
+            <br/>
+            <label>Nombre: </label>
+            <h:inputText value="#{createCustomerAccountBean.name}" required="true" requiredMessage="Tu nombre es obligatorio"/>
+            <br/>
+            <label>Apellido: </label>
+            <h:inputText value="#{createCustomerAccountBean.lastName}" required="true" requiredMessage="Tu apellido es obligatorio"/>
+            <br/>
+            <label>Correo electrónico: </label>
+            <h:inputText value="#{createCustomerAccountBean.email}" required="true" requiredMessage="Tu email es obligatorio"/>
+            <br/>
+            <label>¿Afiliado a la EPS?: </label>
+            <h:inputText value="#{createCustomerAccountBean.epsCustomer}" required="true" requiredMessage="La afiliación es obligatoria"/>
+            <br/><br/>
+            <h:commandButton action="#{createCustomerAccountBean.createCustomerAccount()}" value="Crear"/>
+            <br/><br/>
+            <a href="index.xhtml">Volver</a>
+        </h:form>
+    </h:body>
+</html>
+
