@@ -102,7 +102,4 @@ public class LoginBean {
     public void setRedirectURL(String redirectURL) {
         this.redirectURL = redirectURL;
     }
-    
-    
-    
 }
