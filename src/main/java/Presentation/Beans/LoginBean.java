@@ -25,7 +25,7 @@ public class LoginBean {
     private String adminURL;
     
     
-    public void signUp(){
+    public void signIn(){
         LoginController loginController = new LoginController();
         String result = loginController.login(userName, password, customerURL, adminURL);
         

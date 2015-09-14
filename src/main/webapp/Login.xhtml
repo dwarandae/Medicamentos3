@@ -9,7 +9,21 @@
         <panel>
             <h:form>
                 <label>Sign UP</label>
-                <h:inputText required="true" requiredMessage=""/>
+                <br/>
+                <br/>
+                <label>User Name: </label>
+                <h:inputText value="#{loginBean.userName}" required="true" 
+                             requiredMessage="Please insert your user name"/>
+                <br/>
+                <br/>
+                <label>Password: </label>
+                <h:inputSecret value="#{loginBean.password}" required="true" 
+                               requiredMessage="Please insert your password"/>
+                <br/>
+                <br/>
+                <h:commandButton action="#{loginBean.signIn()}" value="Sing in"/>
+                <br/>
+                <h:outputText value="#{loginBean.redirectURL}"/>
             </h:form>
         </panel>
     </h:body>
