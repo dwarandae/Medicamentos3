@@ -3,7 +3,7 @@
 Repository for **Software Architecture** course at Universidad Nacional de Colombia.
 2015-02.
 
-Master branch: [![Build Status](https://travis-ci.org/dwarandae/travis-broken-example.svg?branch=master)](https://travis-ci.org/dwarandae/travis-broken-example)
+Master branch: on hold for Travis CI.
 
 
 ##Team members:
