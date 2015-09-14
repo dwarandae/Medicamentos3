@@ -24,7 +24,7 @@ public class LoginController {
         if (accountResult != null){
             
             if (accountResult instanceof Customer){
-            appropiatedURL = customerURL;
+                appropiatedURL = customerURL;
             } 
 
             else if (accountResult instanceof Administrator) {
