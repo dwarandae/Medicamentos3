@@ -14,6 +14,7 @@ public class CustomerDAO {
         sessionFactory = HibernateSession.getSessionFactory();
     }
     
+    
     public void save(Customer customer) {
         Session session = sessionFactory.getCurrentSession();
         Transaction trans = session.beginTransaction();

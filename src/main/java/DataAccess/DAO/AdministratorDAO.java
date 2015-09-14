@@ -15,8 +15,7 @@ public class AdministratorDAO {
         sessionFactory = HibernateSession.getSessionFactory();
     }
     
-    //Warning: this method should not be called: you should not create an "Account"
-    //instead of that, create Customer or Administrator Account.
+    
     public void save(Administrator administrator) {
         Session session = sessionFactory.getCurrentSession();
         Transaction trans = session.beginTransaction();
