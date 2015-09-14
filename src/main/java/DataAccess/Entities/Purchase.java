@@ -31,11 +31,8 @@ public class Purchase implements Serializable {
     private Long totalPrice;
     
     //A purchase have one and only one bill
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinTable(name = "purchase_bill",
-               joinColumns = @JoinColumn(name = "purchase_id"),
-               inverseJoinColumns = @JoinColumn(name = "bill_id")
-    )
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "bill_id")
     private Bill bill;
             
     //A purchase have 1..* items

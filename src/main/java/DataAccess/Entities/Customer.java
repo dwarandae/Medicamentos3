@@ -8,7 +8,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -31,11 +30,8 @@ public class Customer extends Account implements Serializable {
     private boolean epsCustomer;
     
     //A Customer have a Shopping Cart (may be empty)
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinTable(name = "customer_shopping_cart",
-               joinColumns = @JoinColumn(name = "customer_id"),
-               inverseJoinColumns = @JoinColumn(name = "shopping_cart_id")
-    )
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "shopping_cart_id")
     private ShoppingCart shoppingCart;
     
     //A Customer can have 0..* Purcharses (unidirectional)
@@ -45,19 +41,11 @@ public class Customer extends Account implements Serializable {
     public Customer() {
     }
 
-    public Customer(String customerId, boolean epsCustomer, ShoppingCart shoppingCart, List<Purchase> purchases) {
-        this.customerId = customerId;
-        this.epsCustomer = epsCustomer;
-        this.shoppingCart = shoppingCart;
-        this.purchases = purchases;
-    }
-
-    public Customer(String name, String lastName, String username, String password, String email, String customerId, boolean epsCustomer, ShoppingCart shoppingCart, List<Purchase> purchases) {
+    public Customer(String name, String lastName, String username, String password, String email, String customerId, boolean epsCustomer) {
         super(name, lastName, username, password, email);
         this.customerId = customerId;
         this.epsCustomer = epsCustomer;
-        this.shoppingCart = shoppingCart;
-        this.purchases = purchases;
+        shoppingCart = new ShoppingCart(); /*All customer is created with a empty shopping cart */
     }
    
     public String getCustomerId() {
