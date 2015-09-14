@@ -21,27 +21,27 @@
                 <h:form>
                     <h:panelGrid columns="2">
                         <h:outputText value="NombreComercial:"/>
-                        <h:outputText value="#{viewMedicamentoBean.nameC}"/>
+                        <h:outputText value="#{viewDrugBean.brandName}"/>
                         <h:outputText value="Nombre Quimico:"/>
-                        <h:outputText value="#{viewMedicamentoBean.nameQ}"/>
+                        <h:outputText value="#{viewDrugBean.chemicalName}"/>
                         <h:outputText value="Fabricante:"/>
-                        <h:outputText value="#{viewMedicamentoBean.fabricante}"/>
-                        <h:outputText value="Concentración:"/>
-                        <h:outputText value="#{viewMedicamentoBean.concentracion}"/>
+                        <h:outputText value="#{viewDrugBean.pharmaceuticalCompany}"/>
+                        <h:outputText value="Clasificación:"/>
+                        <h:outputText value="#{viewDrugBean.classification}"/>
                         <h:outputText value="Presentación:"/>
-                        <h:outputText value="#{viewMedicamentoBean.presentacion}"/>
+                        <h:outputText value="#{viewDrugBean.form}"/>
                         <h:outputText value="Indicaciones:"/>
-                        <h:outputText value="#{viewMedicamentoBean.indicaciones}"/>
+                        <h:outputText value="#{viewDrugBean.dosage}"/>
                         <h:outputText value="Posologia:"/>
-                        <h:outputText value="#{viewMedicamentoBean.posologia}"/>
+                        <h:outputText value="#{viewDrugBean.direction}"/>
                         <h:outputText value="Contra Indicaciones:"/>
-                        <h:outputText value="#{viewMedicamentoBean.contraInd}"/>
+                        <h:outputText value="#{viewDrugBean.use}"/>
                         <h:outputText value="Venta Libre:"/>
-                        <h:outputText value="#{viewMedicamentoBean.ventaLibre}"/>
+                        <h:outputText value="#{viewDrugBean.prescriptionDrug}"/>
                         <h:outputText value="Efectos Adversos:"/>
-                        <h:outputText value="#{viewMedicamentoBean.efectosAdversos}"/>
+                        <h:outputText value="#{viewDrugBean.warning}"/>
                         <h:outputText value="Precio:"/>
-                        <h:outputText value="#{viewMedicamentoBean.precio}"/>
+                        <h:outputText value="#{viewDrugBean.price}"/>
                     </h:panelGrid>
                     <br />
                     <br />
@@ -50,7 +50,7 @@
             </fieldset>
             <h:form>
                 <br />
-                <h:commandButton action="#{viewMedicamentoBean.getMedicamento(1)}" value="Load"/>
+                <h:commandButton action="#{viewDrugBean.getMedicamento(1)}" value="Prueba"/>
                 <br />
                 <h:commandLink action="#{return}" value="Return"/>
                 <br />
