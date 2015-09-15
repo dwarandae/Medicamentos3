@@ -23,6 +23,9 @@
             <label>Apellido: </label>
             <h:inputText value="#{createCustomerAccountBean.lastName}" required="true" requiredMessage="Tu apellido es obligatorio"/>
             <br/>
+            <label>Identificación: </label>
+            <h:inputText value="#{createCustomerAccountBean.customerId}" required="true" requiredMessage="Tu identificación es obligatoria"/>
+            <br/>
             <label>Correo electrónico: </label>
             <h:inputText value="#{createCustomerAccountBean.email}" required="true" requiredMessage="Tu email es obligatorio"/>
             <br/>
@@ -30,6 +33,8 @@
             <h:selectBooleanCheckbox value="#{createCustomerAccountBean.epsCustomer}" required="true" requiredMessage="La afiliación es obligatoria"/>
             <br/><br/>
             <h:commandButton action="#{createCustomerAccountBean.createCustomerAccount()}" value="Crear"/>
+            <br/><br/>
+            <h:outputText value="#{createCustomerAccountBean.statusMessage}"/>
             <br/><br/>
             <a href="index.xhtml">Volver</a>
         </h:form>

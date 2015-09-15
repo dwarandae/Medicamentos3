@@ -14,23 +14,24 @@ import DataAccess.Entities.Customer;
  */
 public class CustomerAccountCreation {
     
-    public boolean createCustomerAccount(String name, String lastName, String username, String password, String email, boolean epsCustomer) {
-        Customer customer = new Customer();
-        customer.setName(name);
-        customer.setLastName(lastName);
-        customer.setUsername(username);
-        customer.setPassword(password);
-        customer.setEmail(email);
-        customer.setEpsCustomer(epsCustomer);
+    public int createCustomerAccount(String name, String lastName, String username, String password, String email, String customerId, boolean epsCustomer) {
+        Customer customer = new Customer(name, lastName, username, password, email, customerId, epsCustomer);
         
         CustomerDAO customerDAO = new CustomerDAO();
-        Customer customerToSave = customerDAO.save(customer);
+        // TODO: waiting for modified CustomerDAO then delete the next two lines and uncomment the rest.
+        customerDAO.save(customer);
+        return 0;
+        /*Customer customerToSave = customerDAO.save(customer);
         
         if (customerToSave != null) {
-            return true;
+            return 3;
+        } else if (customerDAO.findByEmail(email)) {
+            return 2;
+        } else if (customerDAO.findByUsername(username)) {
+            return 1;
         } else {
-            return false;
-        }
+            return 0;
+        }*/
     }
     
 }
