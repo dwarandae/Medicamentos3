@@ -1,6 +1,8 @@
 package DataAccess.Entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
@@ -11,7 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -40,6 +41,12 @@ public class Purchase implements Serializable {
     List<PurchaseItem> purchaseItems;
 
     public Purchase() {
+    }
+    
+    public Purchase(Long totalPrice) {
+        this.totalPrice = totalPrice;
+        this.bill = new Bill(new Date(), "default"); //Ugly, change it to enum!
+        this.purchaseItems = new ArrayList<>();
     }
 
     public Purchase(Long totalPrice, Bill bill, List<PurchaseItem> purchaseItems) {

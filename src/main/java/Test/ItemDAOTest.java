@@ -21,14 +21,15 @@ public class ItemDAOTest {
         Drug drug = new Drug("brand", "generic", "chemical", "company", "dosage", 
                              "class", "form", "use", "direc", "warnin", false,
                              "sideeff", 10000, 5);
-        System.out.println("En main");
+        System.out.println("Starting ItemDAOTest");
         DrugDAO drugDAO = new DrugDAO();
         drugDAO.save(drug);
         
         Item item = new Item(2, drug);
         ItemDAO itemDAO = new ItemDAO();
-        itemDAO.save(item);
-        System.out.println("Fin");
+        boolean success = itemDAO.save(item);
+        assert(success == true);
+        System.out.println("End");
 
     }
     

@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -25,7 +24,7 @@ public class Bill implements Serializable {
     @Column(name = "bill_date")
     private Date billDate;
     
-    //This will change
+    //This will change... enum, maybe?
     @Column(name = "bill_payment_method")
     private String paymentMethod;
     

@@ -9,17 +9,30 @@ import org.hibernate.Transaction;
 public class BillDAO {
     
     private static SessionFactory sessionFactory;
+    private static Transaction trans;
     
     public BillDAO() {
         sessionFactory = HibernateSession.getSessionFactory();
     }
     
     //Warning: this method should not be called (at least directly :p)
-    public void save(Bill bill) {
-        Session session = sessionFactory.getCurrentSession();
-        Transaction trans = session.beginTransaction();
-        session.saveOrUpdate(bill);
-        trans.commit();
+    public boolean save(Bill bill) {
+        
+        boolean success = false;
+        
+        try {
+            Session session = sessionFactory.getCurrentSession();
+            trans = session.beginTransaction();
+            session.saveOrUpdate(bill);
+            trans.commit();
+            success = true;
+        }
+        catch (Exception e) {
+            if(trans != null)
+                trans.rollback();
+        }
+       
+        return success;
+        
     }
-    
 }
