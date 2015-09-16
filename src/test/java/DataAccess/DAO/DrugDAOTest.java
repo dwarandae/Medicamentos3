@@ -1,6 +1,5 @@
-package Test;
+package DataAccess.DAO;
 
-import DataAccess.DAO.DrugDAO;
 import DataAccess.Entities.Drug;
 import DataAccess.Entities.InventoryItem;
 import java.util.ArrayList;

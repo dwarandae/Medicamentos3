@@ -1,6 +1,5 @@
-package Test;
+package DataAccess.DAO;
 
-import DataAccess.DAO.PurchaseDAO;
 import DataAccess.Entities.Purchase;
 
 public class PurchaseDAOTest {

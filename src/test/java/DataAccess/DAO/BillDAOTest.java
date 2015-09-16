@@ -1,6 +1,5 @@
-package Test;
+package DataAccess.DAO;
 
-import DataAccess.DAO.BillDAO;
 import DataAccess.Entities.Bill;
 import java.util.Date;
 

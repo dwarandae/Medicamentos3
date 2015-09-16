@@ -2,7 +2,6 @@ package DataAccess.DAO;
 
 import DataAccess.DAO.Util.HibernateSession;
 import DataAccess.Entities.Account;
-import DataAccess.Entities.Customer;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

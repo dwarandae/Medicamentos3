@@ -1,14 +1,11 @@
-package Test;
+package DataAccess.DAO;
 
-import DataAccess.DAO.CustomerDAO;
 import DataAccess.Entities.Customer;
 
 public class CustomerDAOTest {
     
     public static void main(String... args) {
-
-        
-        
+     
         Customer customer1 = new Customer("name", "lastName", "userName1", "password", "email1@email.com", "doc1", true);
         System.out.println("Starting CustomerDAOTest");
         System.out.println("Testing save()");

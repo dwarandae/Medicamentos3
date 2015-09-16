@@ -1,6 +1,5 @@
-package Test;
+package DataAccess.DAO;
 
-import DataAccess.DAO.InventoryItemDAO;
 import DataAccess.Entities.InventoryItem;
 
 public class InventoryItemDAOTest {

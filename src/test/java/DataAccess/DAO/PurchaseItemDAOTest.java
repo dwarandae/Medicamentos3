@@ -1,7 +1,5 @@
-package Test;
+package DataAccess.DAO;
 
-import DataAccess.DAO.DrugDAO;
-import DataAccess.DAO.PurchaseItemDAO;
 import DataAccess.Entities.Drug;
 import DataAccess.Entities.PurchaseItem;
 

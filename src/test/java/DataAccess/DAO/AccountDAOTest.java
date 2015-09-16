@@ -1,8 +1,6 @@
-package Test;
+package DataAccess.DAO;
 
-import DataAccess.DAO.AccountDAO;
 import DataAccess.Entities.Account;
-import DataAccess.Entities.Administrator;
 
 public class AccountDAOTest {
 
