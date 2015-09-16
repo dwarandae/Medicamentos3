@@ -32,7 +32,7 @@ public class LoginBean {
         String result = loginController.login(getUserName(), getPassword(), getCustomerURL(), getAdminURL());
         
         if (!result.equals("")){
-            setRedirectURL(result);
+            redirectURL = result;
         }
         
         else{

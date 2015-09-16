@@ -25,8 +25,6 @@ public class LoginController {
         adminDAO = new AdministratorDAO();
         String appropiatedURL = "";
         
-        System.out.println(userName);
-        
         if (customerDAO.getCustomerByUsername(userName) != null){
             appropiatedURL = customerURL;
         }
