@@ -26,21 +26,20 @@ public class LoginBean {
     
     
     public void signIn(){
-        customerURL = "Hello Customer";
-        adminURL = "Hello Admin";
+        setCustomerURL("Hello Customer");
+        setAdminURL("Hello Admin");
         LoginController loginController = new LoginController();
-        String result = loginController.login(userName, password, customerURL, adminURL);
+        String result = loginController.login(getUserName(), getPassword(), getCustomerURL(), getAdminURL());
         
         if (!result.equals("")){
-            redirectURL = result;
+            setRedirectURL(result);
         }
         
         else{
-            message = "User doesn't exist, please check yor user name or password";
+            setMessage("User doesn't exist, please check yor user name or password");
         }
     }
-    
-            
+
     /**
      * Creates a new instance of LoginBean
      */
@@ -102,4 +101,33 @@ public class LoginBean {
     public void setRedirectURL(String redirectURL) {
         this.redirectURL = redirectURL;
     }
+
+    /**
+     * @return the customerURL
+     */
+    public String getCustomerURL() {
+        return customerURL;
+    }
+
+    /**
+     * @param customerURL the customerURL to set
+     */
+    public void setCustomerURL(String customerURL) {
+        this.customerURL = customerURL;
+    }
+
+    /**
+     * @return the adminURL
+     */
+    public String getAdminURL() {
+        return adminURL;
+    }
+
+    /**
+     * @param adminURL the adminURL to set
+     */
+    public void setAdminURL(String adminURL) {
+        this.adminURL = adminURL;
+    }
+    
 }
