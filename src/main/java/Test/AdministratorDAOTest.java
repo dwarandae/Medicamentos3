@@ -14,13 +14,13 @@ public class AdministratorDAOTest {
         assert(success == true);
         
         System.out.println("Testing getAdministratorByUsername()");
-        Administrator administrator = administratorDAO.getAccountByUsername("userName");
+        Administrator administrator = administratorDAO.getAdministratorByUsername("userName");
         if(administrator.equals(administrator1))
             System.out.println("Test passed");
         else
             System.out.println("Test failed");
         
-        administrator = administratorDAO.getAccountByUsername("userName1");
+        administrator = administratorDAO.getAdministratorByUsername("userName1");
         if(administrator == null)
             System.out.println("Test passed");
         else

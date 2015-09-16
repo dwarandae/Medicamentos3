@@ -39,7 +39,7 @@ public class AdministratorDAO {
         
     }
     
-    public Administrator getAccountByUsername(String username) {
+    public Administrator getAdministratorByUsername(String username) {
         
         List<Administrator> administrators = null;
         
