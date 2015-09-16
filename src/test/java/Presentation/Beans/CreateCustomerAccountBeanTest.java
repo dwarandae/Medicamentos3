@@ -20,7 +20,7 @@ public class CreateCustomerAccountBeanTest {
      */
     @Test
     public void testCreateCustomerAccount() {
-        System.out.println("createCustomerAccount");
+        System.out.println("CreateCustomerAccountBean Unit Test");
         CreateCustomerAccountBean instance = new CreateCustomerAccountBean();
         instance.setUsername("something");
         instance.setPassword("something");
@@ -34,7 +34,6 @@ public class CreateCustomerAccountBeanTest {
             instance.createCustomerAccount();
             if (!instance.getStatusMessage().equals("Cuenta creada exitosamente.")) fail("The customer instance could not be persisted.");
             
-            /* TODO: uncomment after CustomerDAO includes findByUsername() and findByEmail().
             instance.setUsername("sth");
             instance.createCustomerAccount();
             if (!instance.getStatusMessage().equals("El correo electrónico ingresado ya está asociado a otra cuenta.")) fail("The customer instance saving should've detected a duplicated email.");
@@ -43,7 +42,6 @@ public class CreateCustomerAccountBeanTest {
             instance.setEmail("sth");
             instance.createCustomerAccount();
             if (!instance.getStatusMessage().equals("El nombre de cuenta ingresado ya existe.")) fail("The customer instance saving should've detected a duplicated username.");
-                    */
 
             instance.setName("somethingsomethingsomething");
             instance.createCustomerAccount();
