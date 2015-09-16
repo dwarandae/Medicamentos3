@@ -1,29 +1,29 @@
 package DataAccess.DAO;
 
 import DataAccess.DAO.Util.HibernateSession;
-import DataAccess.Entities.InventoryItem;
+import DataAccess.Entities.Purchase;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-//FIX-ME: generic plz!
-public class InventoryItemDAO {
+public class PurchaseDAO {
     
     private static SessionFactory sessionFactory;
     private static Transaction trans;
-
-    public InventoryItemDAO() {
+    
+    public PurchaseDAO() {
         sessionFactory = HibernateSession.getSessionFactory();
     }
     
-    public boolean save(InventoryItem inventoryItem) {
+    //This method should not be called, the purchase is saved in the customer's list
+    public boolean save(Purchase purchase) {
         
         boolean success = false;
         
         try {
             Session session = sessionFactory.getCurrentSession();
             trans = session.beginTransaction();
-            session.saveOrUpdate(inventoryItem);
+            session.saveOrUpdate(purchase);
             trans.commit();
             success = true;
         }
