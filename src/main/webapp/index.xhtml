@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <h:outputStylesheet library="template" name="semantic.min.css"/>
+        <h:outputScript library="template" name="semantic.min.js"/>
+        <title>PideFarm</title>
+    </h:head>
+    <h:body>
+        <div class="ui equal width center aligned padded grid" style="height: 100%">
+            <div class="black row">
+                <div class="left floated two wide column">
+                    <h:link outcome="index.xhtml">
+                        <button class="ui inverted blue basic button">PideFarm</button>
+                    </h:link>
+                </div>
+                <div class="right floated two wide column">
+                    <div class="ui two column grid">
+                        <div class="column">
+                            <h:link outcome="createCustomerAccount.xhtml">
+                                <button class="ui inverted red basic button">Regístrate</button>
+                            </h:link>
+                        </div>
+                        <div class="column">
+                            <h:link outcome="login">
+                                <button class="ui inverted teal basic button">Ingresa</button>
+                            </h:link>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+            <div class="row" style="height: 100%; background-color: #21B7D0; color: #FFFFFF">
+                <div class="ui center aligned padded four column grid" style="padding-top: 4rem">
+                    <div class="row">
+                        <h:graphicImage class="ui lmedium circular image" library="template" name="images/logo.png"/>
+                    </div>
+                    <div class="row">
+                        <h1 style="font-size: 5rem">¡Bienvenido a PideFarm!</h1>
+                    </div>
+                    <div class="row">
+                        <div class="ten wide column">
+                            <div class="ui horizontal divider" style="color: #FFFFFF">Siempre precios bajos</div>
+                        </div>                        
+                    </div>                    
+                    <div class="row">
+                        <div class="column">
+                            <h:link outcome="createCustomerAccount">
+                                <button class="huge ui inverted button">Regístrate</button>
+                            </h:link>
+                        </div>
+                        <div class="column">
+                            <h:link outcome="login">
+                                <button class="huge ui inverted button">Ingresa</button>
+                            </h:link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
+
