@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title><h:outputText value="Medicamento"></h:outputText></title>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+    </h:head>
+
+    <h:body>
+        <h1>
+            <h:outputText value="View"></h:outputText>
+        </h1>
+        <p>
+            <fieldset><legend>PRODUCTO</legend>
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <h:outputText value="NombreComercial:"/>
+                        <h:outputText value="#{viewDrugBean.brandName}"/>
+                        <h:outputText value="Nombre Quimico:"/>
+                        <h:outputText value="#{viewDrugBean.chemicalName}"/>
+                        <h:outputText value="Fabricante:"/>
+                        <h:outputText value="#{viewDrugBean.pharmaceuticalCompany}"/>
+                        <h:outputText value="Clasificación:"/>
+                        <h:outputText value="#{viewDrugBean.classification}"/>
+                        <h:outputText value="Presentación:"/>
+                        <h:outputText value="#{viewDrugBean.form}"/>
+                        <h:outputText value="Indicaciones:"/>
+                        <h:outputText value="#{viewDrugBean.dosage}"/>
+                        <h:outputText value="Posologia:"/>
+                        <h:outputText value="#{viewDrugBean.direction}"/>
+                        <h:outputText value="Contra Indicaciones:"/>
+                        <h:outputText value="#{viewDrugBean.use}"/>
+                        <h:outputText value="Venta Libre:"/>
+                        <h:outputText value="#{viewDrugBean.prescriptionDrug}"/>
+                        <h:outputText value="Efectos Adversos:"/>
+                        <h:outputText value="#{viewDrugBean.warning}"/>
+                        <h:outputText value="Precio:"/>
+                        <h:outputText value="#{viewDrugBean.price}"/>
+                    </h:panelGrid>
+                    <br />
+                    <br />
+                    
+                </h:form>
+            </fieldset>
+            <h:form>
+                <br />
+                <br />
+                <h:link outcome="/index" value="Index"/>
+            </h:form>
+        </p>
+    </h:body>
+
+</html>
