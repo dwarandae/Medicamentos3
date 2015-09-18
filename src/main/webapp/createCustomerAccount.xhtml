@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <h:outputStylesheet library="template" name="semantic.min.css"/>
+        <h:outputScript library="template" name="semantic.min.js"/>
+        <title>Crear cuenta</title>
+    </h:head>
+    <h:body>
+        <div class="ui equal width center aligned padded grid" style="height: 100%">
+            <div class="black row">
+                <div class="left floated two wide column">
+                    <h:link outcome="index.xhtml">
+                        <button class="ui inverted blue basic button">PideFarm</button>
+                    </h:link>
+                </div>
+                <div class="right floated two wide column">
+                    <div class="ui two column grid">
+                        <div class="column">
+                            <h:link outcome="createCustomerAccount.xhtml">
+                                <button class="ui inverted red basic button">Regístrate</button>
+                            </h:link>
+                        </div>
+                        <div class="column">
+                            <h:link outcome="login.xhtml">
+                                <button class="ui inverted teal basic button">Ingresa</button>
+                            </h:link>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+            <div class="row" style="height: 100%; background-color: #F3F5F8">
+                <div class="ui center aligned padded four column grid" style="padding-top: 4rem">
+                    <div class="row">
+                        <div class="left aligned four wide column">
+                            <h1 style="margin-bottom: 3rem">Registro</h1>
+                            <h:form class="ui form">
+                                <div class="field">
+                                    <label>Nombre de la cuenta</label>
+                                    <h:inputText value="#{createCustomerAccountBean.username}" required="true" requiredMessage="El nombre de la cuenta es obligatorio"/>
+                                </div>
+                                <div class="field">
+                                    <label>Contraseña</label>
+                                    <h:inputSecret value="#{createCustomerAccountBean.password}" required="true" requiredMessage="La contraseña es obligatoria"/>
+                                </div>
+                                <div class="field">
+                                    <label>Nombre</label>
+                                    <h:inputText value="#{createCustomerAccountBean.name}" required="true" requiredMessage="Tu nombre es obligatorio"/>
+                                </div>
+                                <div class="field">
+                                    <label>Apellido</label>
+                                    <h:inputText value="#{createCustomerAccountBean.lastName}" required="true" requiredMessage="Tu apellido es obligatorio"/>
+                                </div>
+                                <div class="field">
+                                    <label>Identificación</label>
+                                    <h:inputText value="#{createCustomerAccountBean.customerId}" required="true" requiredMessage="Tu identificación es obligatoria"/>
+                                </div>
+                                <div class="field">
+                                    <label>Correo electrónico</label>
+                                    <h:inputText value="#{createCustomerAccountBean.email}" required="true" requiredMessage="Tu email es obligatorio"/>
+                                </div>
+                                <div class="field">
+                                    <label>¿Afiliado a la EPS?</label>
+                                    <h:selectBooleanCheckbox value="#{createCustomerAccountBean.epsCustomer}" required="true" requiredMessage="La afiliación es obligatoria"/>
+                                </div>
+                                <h:commandLink action="#{createCustomerAccountBean.createCustomerAccount()}">
+                                    <button class="ui inverted red button">Registrarse</button>
+                                </h:commandLink>
+                                <div class="ui info message">
+                                    <i class="close icon"></i>
+                                    <div class="header">
+                                        <h:outputText value="#{createCustomerAccountBean.statusMessage}"/>
+                                    </div>
+                                </div>                                
+                            </h:form>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </h:body>
+</html>
