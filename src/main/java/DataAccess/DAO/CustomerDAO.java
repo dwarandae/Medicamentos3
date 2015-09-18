@@ -100,7 +100,6 @@ public class CustomerDAO {
             return null;  //BD exception safe!, if the connection fails...
         else
             return customers.iterator().next();
-     
     }
     
 }

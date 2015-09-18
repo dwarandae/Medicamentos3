@@ -12,3 +12,5 @@ dist/
 build/
 target/
 
+#netbeans configuration
+nb-configuration.xml

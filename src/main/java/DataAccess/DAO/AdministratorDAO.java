@@ -39,7 +39,7 @@ public class AdministratorDAO {
         
     }
     
-    public Administrator getAccountByUsername(String username) {
+    public Administrator getAdministratorByUsername(String username) {
         
         List<Administrator> administrators = null;
         
@@ -58,7 +58,6 @@ public class AdministratorDAO {
             return null;  //BD exception safe!, if the connection fails...
         else
             return administrators.iterator().next();
-     
     }
     
 }
