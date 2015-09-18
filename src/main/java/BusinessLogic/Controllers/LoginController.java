@@ -8,6 +8,8 @@ package BusinessLogic.Controllers;
 
 import DataAccess.DAO.AdministratorDAO;
 import DataAccess.DAO.CustomerDAO;
+import DataAccess.Entities.Administrator;
+import DataAccess.Entities.Customer;
 
 /**
  *
@@ -24,12 +26,24 @@ public class LoginController {
         customerDAO = new CustomerDAO();
         adminDAO = new AdministratorDAO();
         String appropiatedURL = "";
+        Customer customer = customerDAO.getCustomerByUsername(userName);
+        Administrator admin = adminDAO.getAdministratorByUsername(userName);
         
-        if (customerDAO.getCustomerByUsername(userName) != null){
-            appropiatedURL = customerURL;
+        if (customer != null){
+            if (customer.getPassword() == password){
+                appropiatedURL = customerURL;
+            }
+            else{
+                appropiatedURL = "";
+            }
         }
-        else if (adminDAO.getAdministratorByUsername(userName) != null){
-            appropiatedURL = adminURL;
+        else if (admin != null){
+            if (admin.getPassword() == password){
+                appropiatedURL = adminURL;
+            } 
+            else {
+                appropiatedURL = "";
+            }
         }
         
         return appropiatedURL;
