@@ -4,8 +4,6 @@
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
     </context-param>
-<<<<<<< HEAD
-=======
     <filter>
         <filter-name>AuthorizationFilter</filter-name>
         <filter-class>BusinessLogic.Services.AuthorizationFilter</filter-class>
@@ -22,7 +20,6 @@
         <filter-name>AuthorizationFilter</filter-name>
         <url-pattern>/resources/*</url-pattern>        
     </filter-mapping>
->>>>>>> a71b3fb3b5f7df49e11ee77304e3edffb64d1233
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>

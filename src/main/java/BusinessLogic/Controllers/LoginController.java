@@ -5,8 +5,6 @@
  */
 package BusinessLogic.Controllers;
 
-import DataAccess.Entities.Administrator;
-import DataAccess.Entities.Customer;
 import DataAccess.DAO.AdministratorDAO;
 import DataAccess.DAO.CustomerDAO;
 
