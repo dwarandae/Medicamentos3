@@ -58,7 +58,6 @@ public class AdministratorDAO {
             return null;  //BD exception safe!, if the connection fails...
         else
             return administrators.iterator().next();
-     
     }
     
 }

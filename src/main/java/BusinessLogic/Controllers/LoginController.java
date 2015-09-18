@@ -5,6 +5,7 @@
  */
 package BusinessLogic.Controllers;
 
+
 import DataAccess.DAO.AdministratorDAO;
 import DataAccess.DAO.CustomerDAO;
 
@@ -13,6 +14,7 @@ import DataAccess.DAO.CustomerDAO;
  * @author cegard
  */
 public class LoginController {
+    
     
     private CustomerDAO customerDAO;
     private AdministratorDAO adminDAO;
