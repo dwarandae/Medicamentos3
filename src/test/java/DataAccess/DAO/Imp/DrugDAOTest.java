@@ -1,4 +1,4 @@
-package DataAccess.DAO;
+package DataAccess.DAO.Imp;
 
 import DataAccess.Entities.Drug;
 import DataAccess.Entities.InventoryItem;

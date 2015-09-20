@@ -1,20 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package BusinessLogic.Controllers;
 
-
-import DataAccess.DAO.AdministratorDAO;
-import DataAccess.DAO.CustomerDAO;
+import DataAccess.DAO.Imp.AdministratorDAO;
+import DataAccess.DAO.Imp.CustomerDAO;
 import DataAccess.Entities.Administrator;
 import DataAccess.Entities.Customer;
 
-/**
- *
- * @author cegard
- */
 public class LoginController {
     
     

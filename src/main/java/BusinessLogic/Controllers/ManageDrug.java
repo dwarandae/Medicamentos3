@@ -5,7 +5,7 @@
  */
 package BusinessLogic.Controllers;
 
-import DataAccess.DAO.DrugDAO;
+import DataAccess.DAO.Imp.DrugDAO;
 import DataAccess.Entities.Drug;
 
 /**
