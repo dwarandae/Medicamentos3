@@ -38,6 +38,7 @@
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
     
+    <!--DAO's beans-->
     <bean id="accountDAO" class="DataAccess.DAO.Imp.AccountDAO" autowire="byName" scope="prototype" parent="genericDao" />
     
     <bean id="administratorDAO" class="DataAccess.DAO.Imp.AdministratorDAO" autowire="byName" scope="prototype" parent="genericDao" />
@@ -58,5 +59,11 @@
     
     <bean id="shoppingCartDAO" class="DataAccess.DAO.Imp.ShoppingCartDAO" autowire="byName" scope="prototype" parent="genericDao" />
     
+    <!--Controllers -->
+    <bean id="customerAccountCreationController" class="BusinessLogic.Controllers.CustomerAccountCreationController" autowire="byName" scope="singleton" />
     
+    <!--Services -->
+    
+    <bean id="customerService" class="BusinessLogic.Services.CustomerService" autowire="byName" scope="singleton" />
+
 </beans>

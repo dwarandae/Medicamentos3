@@ -5,7 +5,7 @@
  */
 package Presentation.Beans;
 
-import BusinessLogic.Controllers.CustomerAccountCreation;
+import BusinessLogic.Controllers.CustomerAccountCreationController;
 import javax.inject.Named;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;

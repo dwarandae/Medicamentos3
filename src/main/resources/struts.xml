@@ -17,9 +17,15 @@
 		
         <default-interceptor-ref name="validationWorkflowStack"/>
 				
-        <action name="indexSignUp" class="Presentation.Beans.SignUp" method = "index" >
-            <result>/signUp/index.jsp</result>
-        </action>	
+        <action name="indexSignUp" class="Presentation.Beans.SignUpBean" method = "index">
+            <result name="success">/signUp/index.jsp</result>
+        </action>
+        
+        <action name="create" class="Presentation.Beans.SignUpBean" method = "create">
+            <result name="success">/signUp/success.jsp</result>
+            <result name="input">/signUp/index.jsp</result>
+            <result name="error">/signUp/error.jsp</result>
+        </action>        	
         
     </package>
     

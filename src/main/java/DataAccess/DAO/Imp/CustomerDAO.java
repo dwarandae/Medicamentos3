@@ -24,7 +24,7 @@ public class CustomerDAO extends GenericDAO<Customer> implements ICustomerDAO{
     @Override
     public Customer getByEmail(String email) {
         Session session = getSession();
-        Customer customer = (Customer)session.createQuery("FROM Customer WHERE email = :email").setParameter("username", email).uniqueResult();
+        Customer customer = (Customer)session.createQuery("FROM Customer WHERE email = :email").setParameter("email", email).uniqueResult();
         return customer;
     }
     
