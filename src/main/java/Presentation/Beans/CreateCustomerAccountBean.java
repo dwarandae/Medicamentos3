@@ -31,33 +31,33 @@ public class CreateCustomerAccountBean {
     /**
      * Attempt to create a customer account.
      */
-    public void createCustomerAccount() {        
-        if(name.length() > 20) {
-            statusMessage = "El nombre no debe superar los 20 caracteres";
-        } else if(lastName.length() > 20) {
-            statusMessage = "El apellido no debe superar los 20 caracteres";
-        } else if(username.length() > 20) {
-            statusMessage = "El nombre de la cuenta no debe superar los 20 caracteres";
-        } else if(password.length() > 20) {
-            statusMessage = "La contraseña no debe superar los 20 caracteres";
-        } else if (customerId.length() > 20) {
-            statusMessage = "La identificación no debe superar los 20 caracteres";
-        } else if(email.length() > 50) {
-            statusMessage = "El correo electrónico no debe superar los 50 caracteres";
-        } else {
-            CustomerAccountCreation customerAccountCreation = new CustomerAccountCreation();
-            int persistenceStatus = customerAccountCreation.createCustomerAccount(name, lastName, username, password, email, customerId, epsCustomer);
-            if (persistenceStatus == 0) {
-                statusMessage = "Cuenta creada exitosamente.";
-            } else if (persistenceStatus == 1) {
-                statusMessage = "El nombre de cuenta ingresado ya existe.";
-            } else if (persistenceStatus == 2) {
-                statusMessage = "El correo electrónico ingresado ya está asociado a otra cuenta.";
-            } else {
-                statusMessage = "Hubo un error en la creación de la cuenta.";
-            }
-        }        
-    }
+//    public void createCustomerAccount() {        
+//        if(name.length() > 20) {
+//            statusMessage = "El nombre no debe superar los 20 caracteres";
+//        } else if(lastName.length() > 20) {
+//            statusMessage = "El apellido no debe superar los 20 caracteres";
+//        } else if(username.length() > 20) {
+//            statusMessage = "El nombre de la cuenta no debe superar los 20 caracteres";
+//        } else if(password.length() > 20) {
+//            statusMessage = "La contraseña no debe superar los 20 caracteres";
+//        } else if (customerId.length() > 20) {
+//            statusMessage = "La identificación no debe superar los 20 caracteres";
+//        } else if(email.length() > 50) {
+//            statusMessage = "El correo electrónico no debe superar los 50 caracteres";
+//        } else {
+//            CustomerAccountCreation customerAccountCreation = new CustomerAccountCreation();
+//            int persistenceStatus = customerAccountCreation.createCustomerAccount(name, lastName, username, password, email, customerId, epsCustomer);
+//            if (persistenceStatus == 0) {
+//                statusMessage = "Cuenta creada exitosamente.";
+//            } else if (persistenceStatus == 1) {
+//                statusMessage = "El nombre de cuenta ingresado ya existe.";
+//            } else if (persistenceStatus == 2) {
+//                statusMessage = "El correo electrónico ingresado ya está asociado a otra cuenta.";
+//            } else {
+//                statusMessage = "Hubo un error en la creación de la cuenta.";
+//            }
+//        }        
+//    }
 
     /**
      * @return the name

@@ -33,5 +33,30 @@
     </bean>
  
     <tx:annotation-driven transaction-manager="transactionManager" />
-
+    
+    <bean id="genericDao" class="DataAccess.DAO.Imp.GenericDAO" autowire="byName" scope="prototype">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    
+    <bean id="accountDAO" class="DataAccess.DAO.Imp.AccountDAO" autowire="byName" scope="prototype" parent="genericDao" />
+    
+    <bean id="administratorDAO" class="DataAccess.DAO.Imp.AdministratorDAO" autowire="byName" scope="prototype" parent="genericDao" />
+    
+    <bean id="billDAO" class="DataAccess.DAO.Imp.BillDAO" autowire="byName" scope="prototype" parent="genericDao" />
+    
+    <bean id="customerDAO" class="DataAccess.DAO.Imp.CustomerDAO" autowire="byName" scope="prototype" parent="genericDao" />
+    
+    <bean id="drugDAO" class="DataAccess.DAO.Imp.DrugDAO" autowire="byName" scope="prototype" parent="genericDao" />
+    
+    <bean id="inventoryItemDAO" class="DataAccess.DAO.Imp.InventoryItemDAO" autowire="byName" scope="prototype" parent="genericDao" />
+    
+    <bean id="itemDAO" class="DataAccess.DAO.Imp.ItemDAO" autowire="byName" scope="prototype" parent="genericDao" />
+    
+    <bean id="purchaseDAO" class="DataAccess.DAO.Imp.PurchaseDAO" autowire="byName" scope="prototype" parent="genericDao" />
+    
+    <bean id="purchaseItemDAO" class="DataAccess.DAO.Imp.PurchaseItemDAO" autowire="byName" scope="prototype" parent="genericDao" />
+    
+    <bean id="shoppingCartDAO" class="DataAccess.DAO.Imp.ShoppingCartDAO" autowire="byName" scope="prototype" parent="genericDao" />
+    
+    
 </beans>

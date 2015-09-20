@@ -14,20 +14,20 @@ import DataAccess.Entities.Customer;
  */
 public class CustomerAccountCreation {
     
-    public int createCustomerAccount(String name, String lastName, String username, String password, String email, String customerId, boolean epsCustomer) {
-        Customer customer = new Customer(name, lastName, username, password, email, customerId, epsCustomer);
-        
-        CustomerDAO customerDAO = new CustomerDAO();
-        
-        if (customerDAO.isUsernameInUse(username)) {
-            return 1;
-        } else if (customerDAO.isEmailInUse(email)) {
-            return 2;
-        } else if (!customerDAO.save(customer)) {
-            return 3;
-        } else {
-            return 0;
-        }
-    }
+//    public int createCustomerAccount(String name, String lastName, String username, String password, String email, String customerId, boolean epsCustomer) {
+//        Customer customer = new Customer(name, lastName, username, password, email, customerId, epsCustomer);
+//        
+//        CustomerDAO customerDAO = new CustomerDAO();
+//        
+//        if (customerDAO.isUsernameInUse(username)) {
+//            return 1;
+//        } else if (customerDAO.isEmailInUse(email)) {
+//            return 2;
+//        } else if (!customerDAO.save(customer)) {
+//            return 3;
+//        } else {
+//            return 0;
+//        }
+//    }
     
 }
