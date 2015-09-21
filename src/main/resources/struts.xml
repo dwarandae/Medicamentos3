@@ -38,5 +38,15 @@
         </action>	
         
     </package>
+    
+    <package name="bill" namespace="/bill" extends="struts-default">
+        
+        <default-interceptor-ref name="validationWorkflowStack"/>
+        
+        <action name="indexBill" class="Presentation.Beans.BillBean" method="testIndex">
+            <result>/bill/index.jsp</result>
+        </action>
+                
+    </package>
 		
 </struts>
