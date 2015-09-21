@@ -33,15 +33,28 @@
 		
         <default-interceptor-ref name="validationWorkflowStack"/>
 				
-        <action name="indexSignIn" class="Presentation.Beans.SignIn" method = "index">
+        <action name="indexSignIn" class="Presentation.Beans.SignInBean" method = "index">
             <result>/signIn/index.jsp</result>
         </action>
         
-        <action name="create" class="Presentation.Beans.SignInBean" method = "signIn">
-            <result name="success">/signIn/success.jsp</result>
+        <action name="signIn" class="Presentation.Beans.SignInBean" method = "signIn">
             <result name="input">/signIn/index.jsp</result>
-            <result name="error">/signIn/error.jsp</result>
-        </action> 	
+            <result name="notFound">/signIn/index.jsp</result>
+            <result name="password">/signIn/index.jsp</result>
+            <result name="admin" type="redirectAction">
+                <param name="actionName">indexAdmin</param>
+            </result>
+            <result name="customer" type="redirectAction">
+                <param name="actionName">indexCustomer</param>
+            </result>
+        </action>
+        
+        <action name="indexAdmin" class="Presentation.Beans.SignInBean" method = "indexAdmin">
+            <result name="success">/signIn/indexAdmin.jsp</result>
+        </action>
+        <action name="indexCustomer" class="Presentation.Beans.SignInBean" method = "indexCustomer">
+            <result name="success">/signIn/indexCustomer.jsp</result>
+        </action>  	
         
     </package>
 		

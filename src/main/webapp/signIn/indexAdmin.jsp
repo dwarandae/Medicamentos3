@@ -1,7 +1,7 @@
 <%-- 
-    Document   : success
-    Created on : 20/09/2015, 06:02:58 PM
-    Author     : administrador
+    Document   : indexAdmin
+    Created on : 21/09/2015, 01:56:25 AM
+    Author     : dwarandae
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -9,9 +9,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>JSP Page admin</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Hello admin ${sessionScope.username}</h1>
     </body>
 </html>
