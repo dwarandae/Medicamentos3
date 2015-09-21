@@ -33,9 +33,15 @@
 		
         <default-interceptor-ref name="validationWorkflowStack"/>
 				
-        <action name="indexSignIn" class="Presentation.Beans.SignIn" method = "index">
-            <result>/signIn/index.jsp</result>
-        </action>	
+        <action name="indexSignIn" class="Presentation.Beans.SignInBean" method = "index">
+            <result name="success">/signIn/index.jsp</result>
+        </action>
+        
+        <action name="signIn" class="Presentation.Beans.SignInBean" method = "signIn">
+            <result name="customer">/signIn/customer.jsp</result>
+            <result name="input">/signIn/index.jsp</result>
+            <result name="admin">/signIn/error.jsp</result>
+        </action> 	
         
     </package>
 		

@@ -7,7 +7,8 @@ import org.apache.commons.lang3.StringUtils;
 
 public class SignInBean extends ActionSupport{
     
-    
+    private final String CUSTOMER = "customer";
+    private final String ADMIN = "admin";
     private String userName;
     private String password;
     private LoginController loginController;
@@ -20,10 +21,17 @@ public class SignInBean extends ActionSupport{
     
     public String signIn(){
         loginController = new LoginController();
-        String result = "";
+        String result = INPUT;
         
         if (validateCamps()){
-            result = loginController.login(userName, password);
+            String loginResponse = loginController.login(userName, password);
+            
+            if (loginResponse.equals("customer")){
+                result = CUSTOMER;
+            }
+            else if (loginResponse.equals("administrator")){
+                result = ADMIN;
+            }
         }
         return result;
     }
