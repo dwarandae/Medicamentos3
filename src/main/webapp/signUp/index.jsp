@@ -6,6 +6,7 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="../resources/template/semantic.min.css">
+        <script type="text/javascript" src="../resources/template/jquery.min.js"></script>
         <script type="text/javascript" src="../resources/template/semantic.min.js"></script>
         <title>Crear cuenta</title>
     <head>
@@ -23,13 +24,13 @@
                         <div class="column">
                             <s:url id="signUp" namespace='/signUp' action='indexSignUp'/>
                             <s:a href="%{signUp}">
-                                <button class="ui inverted red basic button">Regístrate</button>
+                                <button class="ui inverted orange basic button">Regístrate</button>
                             </s:a>
                         </div>
                         <div class="column">
                             <s:url id="signIn" namespace='/signIn' action='indexSignIn'/>
                             <s:a href="%{signIn}">
-                                <button class="ui inverted red basic button">Ingresa</button>
+                                <button class="ui inverted green basic button">Ingresa</button>
                             </s:a>
                         </div>
                     </div>                    
@@ -40,14 +41,14 @@
                     <div class="row">
                         <div class="left aligned four wide column">
                             <h1 style="margin-bottom: 3rem">Registro</h1>
-                            <s:form cssClass="ui form" action="create" namespace="/signUp">
+                            <s:form cssClass="ui form" action="create" namespace="/signUp" theme="simple" validate="true">
                                 <div class="field">
                                     <label>Nombre de la cuenta</label>
                                     <s:textfield name="customer.username" id="customerUsername"/>
                                 </div>
                                 <div class="field">
                                     <label>Contraseña</label>
-                                    <s:textfield name="customer.password" id="customerPassword"/>
+                                    <s:password name="customer.password" id="customerPassword"/>
                                 </div>
                                 <div class="field">
                                     <label>Nombre</label>
@@ -67,15 +68,15 @@
                                 </div>
                                 <div class="field">
                                     <label>¿Afiliado a la EPS?</label>
-                                    <s:checkbox name="customer.name" id="customerName"/>
+                                    <s:checkbox name="customer.epsCustomer" id="customerEps"/>
                                 </div>
-
-                                <s:submit type="button" cssClass="ui inverted red button" value="Registrarse"/>                         
+                                <s:submit type="button" theme="simple" cssClass="ui inverted orange button" value="Registrarse" id="submit"/>
+                                <s:fielderror theme="simple" cssClass="ui list"/>
                             </s:form>
                         </div>                        
                     </div>
                 </div>
             </div>
-        </div>        
-    </h:body>
+        </div>
+    </body>
 </html>
