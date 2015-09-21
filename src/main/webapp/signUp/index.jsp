@@ -39,8 +39,8 @@
                 <div class="ui center aligned padded four column grid" style="padding-top: 4rem">
                     <div class="row">
                         <div class="left aligned four wide column">
-                            <h1 style="margin-bottom: 3rem">Registro</h1>
-                            <s:form cssClass="ui form" action="create" namespace="/signUp">
+                            <h1 style="margin-bottom: 3rem">Registro</h1> 
+                            <s:form cssClass="ui form" action="create" namespace="/signUp" theme = "simple">
                                 <div class="field">
                                     <label>Nombre de la cuenta</label>
                                     <s:textfield name="customer.username" id="customerUsername"/>
