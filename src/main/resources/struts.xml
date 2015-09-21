@@ -35,7 +35,13 @@
 				
         <action name="indexSignIn" class="Presentation.Beans.SignIn" method = "index">
             <result>/signIn/index.jsp</result>
-        </action>	
+        </action>
+        
+        <action name="create" class="Presentation.Beans.SignInBean" method = "signIn">
+            <result name="success">/signIn/success.jsp</result>
+            <result name="input">/signIn/index.jsp</result>
+            <result name="error">/signIn/error.jsp</result>
+        </action> 	
         
     </package>
 		

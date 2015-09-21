@@ -15,7 +15,7 @@ public class SignUpBean extends ActionSupport {
     }
     
     public String create() {
-        if(!validate(customer))
+        if(!validateData(customer))
             return INPUT;
         if(customerAccountCreationController.createCustomer(customer))
             return SUCCESS;
@@ -23,7 +23,7 @@ public class SignUpBean extends ActionSupport {
             return ERROR;      
     }
     
-    public boolean validate(Customer customer) {
+    public boolean validateData(Customer customer) {
         boolean valid = true;
         if(StringUtils.isBlank(customer.getCustomerId())){
             addFieldError("customerId","Contraseña en blanco");
@@ -50,9 +50,6 @@ public class SignUpBean extends ActionSupport {
             valid = false;
         }
         if(valid) {
-            System.out.println(customer.getUsername());
-                        System.out.println(customerAccountCreationController == null);
-
             if(customerAccountCreationController.isUsernameInvalid(customer.getUsername())){
                 addFieldError("username","Nombre de usuario ya existente");
                 valid = false;

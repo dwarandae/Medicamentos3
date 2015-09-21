@@ -22,6 +22,11 @@ public class CustomerService {
     public boolean isEmailInUse(String email) {
         return customerDAO.getByEmail(email) != null;
     }
+    
+    @Transactional
+    public Customer findCustomerByUsername(String username) {
+        return customerDAO.getByUsername(username);
+    }
 
     public ICustomerDAO getCustomerDAO() {
         return customerDAO;
