@@ -13,7 +13,10 @@ public class AuthController {
     //ninguno de los dos, retorna null (no encontrado). Bajo la restricción de un único nombre de usuario, pero puede tener problemas por la herencia...
     //Ugly.
     public Account findAccount(Account account){
-        Account found = administratorService.findAdministratorByUsername(account.getUsername());
+        Account found;
+        found= administratorService.findAdministratorByUsername(account.getUsername());
+        if(found!=null)
+            return found;
         found = customerService.findCustomerByUsername(account.getUsername());
         return found;
     }

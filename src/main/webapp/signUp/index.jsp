@@ -67,7 +67,7 @@
                                 </div>
                                 <div class="field">
                                     <label>¿Afiliado a la EPS?</label>
-                                    <s:checkbox name="customer.name" id="customerName"/>
+                                    <s:checkbox name="customer.epsCustomer" id="customerName"/>
                                 </div>
 
                                 <s:submit type="button" cssClass="ui inverted red button" value="Registrarse"/>                         

@@ -65,5 +65,5 @@
                 </div>
             </div>
         </div>
-    </h:body>
+    </body>
 </html>
