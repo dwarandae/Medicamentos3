@@ -6,6 +6,7 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="resources/template/semantic.min.css">
+        <script type="text/javascript" src="resources/template/jquery.min.js"></script>
         <script type="text/javascript" src="resources/template/semantic.min.js"></script>
         <title>PideFarm</title>
     <head>
