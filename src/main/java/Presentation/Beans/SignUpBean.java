@@ -20,7 +20,7 @@ public class SignUpBean extends ActionSupport {
         if(customerCreationController.createCustomer(customer))
             return SUCCESS;
         else
-            return ERROR;      
+            return ERROR;
     }
     
     public boolean validateData(Customer customer) {
