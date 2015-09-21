@@ -57,5 +57,39 @@
         </action>  	
         
     </package>
+    
+    <package name="drugs" namespace="/drugs" extends="struts-default">
+		
+        <default-interceptor-ref name="validationWorkflowStack"/>
+				
+        <action name="indexDrugs" class="Presentation.Beans.ListDrugsBean" method = "index">
+            <result name="success">/drugs/indexDrugs.jsp</result>
+        </action>
+        
+        <action name="indexCreateDrug" class="Presentation.Beans.SignUpBean" method = "create">
+            <result name="success">/signUp/success.jsp</result>
+            <result name="input">/signUp/index.jsp</result>
+            <result name="error">/signUp/error.jsp</result>
+        </action>
+        
+        <action name="createDrug" class="Presentation.Beans.SignUpBean" method = "create">
+            <result name="success">/signUp/success.jsp</result>
+            <result name="input">/signUp/index.jsp</result>
+            <result name="error">/signUp/error.jsp</result>
+        </action>          	
+        
+        <action name="indexUpdateDrug" class="Presentation.Beans.SignUpBean" method = "create">
+            <result name="success">/signUp/success.jsp</result>
+            <result name="input">/signUp/index.jsp</result>
+            <result name="error">/signUp/error.jsp</result>
+        </action>
+        
+        <action name="updateDrug" class="Presentation.Beans.SignUpBean" method = "create">
+            <result name="success">/signUp/success.jsp</result>
+            <result name="input">/signUp/index.jsp</result>
+            <result name="error">/signUp/error.jsp</result>
+        </action>
+        
+    </package>
 		
 </struts>

@@ -1,17 +1,50 @@
-<%-- 
-    Document   : indexAdmin
-    Created on : 21/09/2015, 01:56:25 AM
-    Author     : dwarandae
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>  
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page admin</title>
-    </head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="../resources/template/semantic.min.css">
+        <script type="text/javascript" src="../resources/template/jquery.min.js"></script>
+        <script type="text/javascript" src="../resources/template/semantic.min.js"></script>
+        <title>Página de administración</title>
+    <head>
     <body>
-        <h1>Hello admin ${sessionScope.username}</h1>
+        <div class="ui equal width center aligned padded grid" style="height: 100%">
+            <div class="black row">
+                <div class="left floated two wide column">
+                    <s:url id="index" namespace='/' action='index'/>
+                    <s:a href="%{index}">
+                        <button class="ui inverted blue basic button">PideFarm</button>
+                    </s:a>
+                </div>
+                <div class="right floated two wide column">
+                    <div class="ui two column grid">
+                        <div class="column">
+                            <s:url id="signUp" namespace='/drugs' action='indexDrugs'/>
+                            <s:a href="%{signUp}">
+                                <button class="ui inverted orange basic button">Administrar medicamentos</button>
+                            </s:a>
+                        </div>
+                        <div class="column">
+                            <s:url id="signIn" namespace='/signIn' action='indexSignIn'/>
+                            <s:a href="%{signIn}">
+                                <button class="ui inverted green basic button">Administrar inventario</button>
+                            </s:a>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+            <div class="row" style="height: 100%; background-color: #F3F5F8">
+                <div class="ui center aligned padded four column grid" style="padding-top: 4rem">
+                    <div class="row">
+                        <div class="left aligned four wide column">
+                            <h1 style="margin-bottom: 3rem">Bienvenido, ${sessionScope.username}</h1>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
