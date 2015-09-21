@@ -6,6 +6,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>test!</h1>
+        <s:form>
+
+        </s:form>
     </body>
 </html>
