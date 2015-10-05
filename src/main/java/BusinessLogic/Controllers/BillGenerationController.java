@@ -15,7 +15,7 @@ public class BillGenerationController {
     }
     
     public Customer getCustomerByUsername(String username) {
-        return customerService.findByUsername(username);
+        return customerService.findCustomerByUsername(username);
     }
 
     /**
