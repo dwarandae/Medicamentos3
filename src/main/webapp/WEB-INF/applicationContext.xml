@@ -14,7 +14,7 @@
         <property name="packagesToScan" value="DataAccess.Entities" />
         <property name="hibernateProperties">
             <props>
-                <prop key="hibernate.hbm2ddl.auto">create</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
             </props>
@@ -40,30 +40,26 @@
     
     <!--DAO's beans-->
     <bean id="accountDAO" class="DataAccess.DAO.Imp.AccountDAO" autowire="byName" scope="prototype" parent="genericDao" />
-    
     <bean id="administratorDAO" class="DataAccess.DAO.Imp.AdministratorDAO" autowire="byName" scope="prototype" parent="genericDao" />
-    
     <bean id="billDAO" class="DataAccess.DAO.Imp.BillDAO" autowire="byName" scope="prototype" parent="genericDao" />
-    
     <bean id="customerDAO" class="DataAccess.DAO.Imp.CustomerDAO" autowire="byName" scope="prototype" parent="genericDao" />
-    
     <bean id="drugDAO" class="DataAccess.DAO.Imp.DrugDAO" autowire="byName" scope="prototype" parent="genericDao" />
-    
     <bean id="inventoryItemDAO" class="DataAccess.DAO.Imp.InventoryItemDAO" autowire="byName" scope="prototype" parent="genericDao" />
-    
     <bean id="itemDAO" class="DataAccess.DAO.Imp.ItemDAO" autowire="byName" scope="prototype" parent="genericDao" />
-    
     <bean id="purchaseDAO" class="DataAccess.DAO.Imp.PurchaseDAO" autowire="byName" scope="prototype" parent="genericDao" />
-    
     <bean id="purchaseItemDAO" class="DataAccess.DAO.Imp.PurchaseItemDAO" autowire="byName" scope="prototype" parent="genericDao" />
-    
     <bean id="shoppingCartDAO" class="DataAccess.DAO.Imp.ShoppingCartDAO" autowire="byName" scope="prototype" parent="genericDao" />
     
     <!--Controllers -->
-    <bean id="customerAccountCreationController" class="BusinessLogic.Controllers.CustomerAccountCreationController" autowire="byName" scope="singleton" />
-    
+    <bean id="administratorAccountController" class="BusinessLogic.Controllers.AdministratorAccountController" autowire="byName" scope="singleton" />
+    <bean id="authController" class="BusinessLogic.Controllers.AuthController" autowire="byName" scope="singleton" />
+    <bean id="customerCreationController" class="BusinessLogic.Controllers.CustomerCreationController" autowire="byName" scope="singleton" />
+    <bean id="drugsController" class="BusinessLogic.Controllers.DrugsController" autowire="byName" scope="singleton" />
+    <bean id="sessionController" class="BusinessLogic.Controllers.SessionController" autowire="byName" scope="singleton" />
+        
     <!--Services -->
-    
+    <bean id="administratorService" class="BusinessLogic.Services.AdministratorService" autowire="byName" scope="singleton" />
     <bean id="customerService" class="BusinessLogic.Services.CustomerService" autowire="byName" scope="singleton" />
+    <bean id="drugService" class="BusinessLogic.Services.DrugService" autowire="byName" scope="singleton" />
 
 </beans>

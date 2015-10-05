@@ -1,6 +1,6 @@
 package Presentation.Beans;
 
-import BusinessLogic.Controllers.CustomerAccountCreationController;
+import BusinessLogic.Controllers.CustomerCreationController;
 import DataAccess.Entities.Customer;
 import com.opensymphony.xwork2.ActionSupport; 
 import org.apache.commons.lang3.StringUtils;
@@ -8,22 +8,22 @@ import org.apache.commons.lang3.StringUtils;
 public class SignUpBean extends ActionSupport {
     
     private Customer customer;
-    private CustomerAccountCreationController customerAccountCreationController;
+    private CustomerCreationController customerCreationController;
         
     public String index() {
         return SUCCESS;
     }
     
     public String create() {
-        if(!validate(customer))
+        if(!validateData(customer))
             return INPUT;
-        if(customerAccountCreationController.createCustomer(customer))
+        if(customerCreationController.createCustomer(customer))
             return SUCCESS;
         else
             return ERROR;
     }
     
-    public boolean validate(Customer customer) {
+    public boolean validateData(Customer customer) {
         boolean valid = true;
         if(StringUtils.isBlank(customer.getCustomerId())){
             addFieldError("customerId","Contraseña en blanco");
@@ -50,14 +50,11 @@ public class SignUpBean extends ActionSupport {
             valid = false;
         }
         if(valid) {
-            System.out.println(customer.getUsername());
-                        System.out.println(customerAccountCreationController == null);
-
-            if(customerAccountCreationController.isUsernameInvalid(customer.getUsername())){
+            if(customerCreationController.isUsernameInvalid(customer.getUsername())){
                 addFieldError("username","Nombre de usuario ya existente");
                 valid = false;
             }
-            if(customerAccountCreationController.isEmailInvalid(customer.getEmail())){
+            if(customerCreationController.isEmailInvalid(customer.getEmail())){
                 addFieldError("email", "Correo ya existente");
                 valid = false;
             }
@@ -73,12 +70,12 @@ public class SignUpBean extends ActionSupport {
         this.customer = customer;
     }
 
-    public CustomerAccountCreationController getCustomerAccountCreationController() {
-        return customerAccountCreationController;
+    public CustomerCreationController getCustomerCreationController() {
+        return customerCreationController;
     }
 
-    public void setCustomerAccountCreationController(CustomerAccountCreationController customerAccountCreationController) {
-        this.customerAccountCreationController = customerAccountCreationController;
+    public void setCustomerCreationController(CustomerCreationController customerCreationController) {
+        this.customerCreationController = customerCreationController;
     }
     
 }

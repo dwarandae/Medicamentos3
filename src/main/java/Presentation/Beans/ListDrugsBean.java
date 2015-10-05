@@ -1,6 +1,6 @@
 package Presentation.Beans;
 
-import BusinessLogic.Controllers.ListDrugsController;
+import BusinessLogic.Controllers.DrugsController;
 import DataAccess.Entities.Drug;
 import java.io.Serializable;
 import java.util.List;
@@ -14,29 +14,29 @@ import javax.inject.Named;
 @SessionScoped
 public class ListDrugsBean implements Serializable {
     
-    ListDrugsController listDrugsController = new ListDrugsController();
-    
-    List<Drug> drugs;
-    
-    public List<Drug> getAllDrugs() {
-        return listDrugsController.getAllDrugs();
-    }
-
-    public ListDrugsController getListDrugsController() {
-        return listDrugsController;
-    }
-
-    public void setListDrugsController(ListDrugsController listDrugsController) {
-        this.listDrugsController = listDrugsController;
-    }
-
-    public List<Drug> getDrugs() {
-        drugs = listDrugsController.getAllDrugs();
-        return drugs;
-    }
-
-    public void setDrugs(List<Drug> drugs) {
-        this.drugs = drugs;
-    }
+//    DrugsController listDrugsController = new DrugsController();
+//    
+//    List<Drug> drugs;
+//    
+//    public List<Drug> getAllDrugs() {
+//        return listDrugsController.getAllDrugs();
+//    }
+//
+//    public DrugsController getListDrugsController() {
+//        return listDrugsController;
+//    }
+//
+//    public void setListDrugsController(DrugsController listDrugsController) {
+//        this.listDrugsController = listDrugsController;
+//    }
+//
+//    public List<Drug> getDrugs() {
+//        drugs = listDrugsController.getAllDrugs();
+//        return drugs;
+//    }
+//
+//    public void setDrugs(List<Drug> drugs) {
+//        this.drugs = drugs;
+//    }
     
 }

@@ -3,7 +3,7 @@ package BusinessLogic.Controllers;
 import BusinessLogic.Services.CustomerService;
 import DataAccess.Entities.Customer;
 
-public class CustomerAccountCreationController {
+public class CustomerCreationController {
     
     CustomerService customerService;
     

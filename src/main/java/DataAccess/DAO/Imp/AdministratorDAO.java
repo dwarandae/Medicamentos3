@@ -25,7 +25,7 @@ public class AdministratorDAO extends GenericDAO<Administrator> implements IAdmi
     public Administrator getAdministratorByUsername(String username) {
         Session session = getSession();
         Administrator administrator;
-        administrator = (Administrator)session.createQuery("FROM Account WHERE username = :username").setParameter("username", username).uniqueResult();
+        administrator = (Administrator)session.createQuery("FROM Administrator WHERE username = :username").setParameter("username", username).uniqueResult();
         return administrator;
     }
     

@@ -24,7 +24,7 @@ public class CustomerService {
     }
     
     @Transactional
-    public Customer findByUsername(String username) {
+    public Customer findCustomerByUsername(String username) {
         return customerDAO.getByUsername(username);
     }
 
