@@ -43,7 +43,7 @@
         
         <default-interceptor-ref name="validationWorkflowStack"/>
         
-        <action name="indexBill" class="Presentation.Beans.BillBean" method="testIndex">
+        <action name="indexBill" class="Presentation.Beans.BillBean" method="index">
             <result>/bill/index.jsp</result>
         </action>
                 

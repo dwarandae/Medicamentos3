@@ -39,17 +39,18 @@ public class BillBean extends ActionSupport implements SessionAware {
         purchase = (Purchase) userSession.get(PURCHASE);
         String username = (String) userSession.get(USERNAME);
         bill = purchase.getBill();
-        System.out.println(username + "\n" + bill + "\n" + purchase.getTotalPrice());
+        System.out.println(username + " - " + bill + " - " + purchase.getTotalPrice());
         return SUCCESS;
     }
     
     private void setTestData() {
-        Customer testCustomer = new Customer("name", "last-name", "cool uh?", "pwd", "email", "1234", true);
+        Customer testCustomer = new Customer("name", "last-name", "el_brayan", "pwd", "email", "1234", true);
+        customer = testCustomer;
         Bill testBill = new Bill(new Date(), "efectivo");
         List<PurchaseItem> testItems = new ArrayList<>();
-        Drug testDrug = new Drug("Dolex", "Acetaminofen", "yeah", "Genfar", "100 ml", "Hazardous", "Tablet", "Oral", "sth", "none", true, "none", 10000, 50);
-        testItems.add(new PurchaseItem(10, 5000, testDrug));
-        Purchase testPurchase = new Purchase(10000L*50, bill, testItems);
+        testItems.add(new PurchaseItem(10, 5000, new Drug("Dolex", "Acetaminofen", "yeah", "Genfar", "100 ml", "Hazardous", "Tablet", "Oral", "sth", "none", true, "none", 10000, 50)));
+        testItems.add(new PurchaseItem(300, 25000, new Drug("Dolex Forte", "Acetaminofen", "yeah", "Genfar", "100 ml", "Hazardous", "Tablet", "Oral", "sth", "none", true, "none", 20000, 100)));
+        Purchase testPurchase = new Purchase(10*5000L, testBill, testItems);
         userSession.put(USERNAME, testCustomer.getUsername());
         userSession.put(PURCHASE, testPurchase);
     }

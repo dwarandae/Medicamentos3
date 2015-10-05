@@ -9,7 +9,7 @@
         <script type="text/javascript" src="../resources/template/jquery.min.js"></script>
         <script type="text/javascript" src="../resources/template/semantic.min.js"></script>
         <title>Crear cuenta</title>
-    <head>
+    </head>
     <body>
         <div class="ui equal width center aligned padded grid" style="height: 100%">
             <div class="black row">
