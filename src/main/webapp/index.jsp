@@ -62,6 +62,12 @@
                                 <button class="huge ui inverted button">Ingresa</button>
                             </s:a>
                         </div>
+                        <div class="column">
+                            <s:url id="purchase" namespace='/purchase' action='indexPurchase'/>
+                            <s:a href="%{purchase}">
+                                <button class="huge ui inverted button">Purcharse</button>
+                            </s:a>
+                        </div>
                     </div>
                 </div>
             </div>

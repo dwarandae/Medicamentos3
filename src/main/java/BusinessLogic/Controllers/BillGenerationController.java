@@ -2,7 +2,6 @@ package BusinessLogic.Controllers;
 
 import BusinessLogic.Services.BillService;
 import BusinessLogic.Services.CustomerService;
-import DataAccess.Entities.Bill;
 import DataAccess.Entities.Customer;
 
 public class BillGenerationController {
@@ -10,12 +9,12 @@ public class BillGenerationController {
     private BillService billService;
     private CustomerService customerService;
     
-    public boolean createBill(Bill bill) {
-        return getBillService().saveBill(bill);
-    }
-    
     public Customer getCustomerByUsername(String username) {
         return customerService.findCustomerByUsername(username);
+    }
+    
+    public boolean saveCustomer(Customer customer) {
+        return customerService.saveCustomer(customer);
     }
 
     /**

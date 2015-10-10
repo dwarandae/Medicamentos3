@@ -58,6 +58,26 @@
         
     </package>
     
+    <package name="purchase" namespace="/purchase" extends="struts-default">
+        
+        <default-interceptor-ref name="validationWorkflowStack"/>
+        
+        <action name="indexPurchase" class="Presentation.Beans.PurchaseBean" method="testIndex">
+            <result name="success">/purchase/index.jsp</result>
+            <result name="empty">/purchase/empty.jsp</result>
+        </action>
+        
+        <action name="doPurchase" class="Presentation.Beans.PurchaseBean" method="doPurchase">
+            <result name="success">/purchase/success.jsp</result><!-- Redirect to bill -->
+            <result name="error">/purchase/error.jsp</result>
+        </action>
+        
+        <action name="deleteItem" class="Presentation.Beans.PurchaseBean" method="deleteItem">
+            <result>/purchase/index.jsp</result>
+        </action>
+        
+    </package>
+    
     <package name="bill" namespace="/bill" extends="struts-default">
         
         <default-interceptor-ref name="validationWorkflowStack"/>
