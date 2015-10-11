@@ -13,6 +13,16 @@ public class DrugService {
     public List<Drug> getAllDrugs() {
         return drugDAO.getAll();
     }
+    
+    @Transactional
+    public Drug findDrugById(long id) {
+        return drugDAO.get(id);
+    }
+    
+    @Transactional
+    public boolean saveDrug(Drug drug) {
+        return drugDAO.save(drug);
+    }
 
     public IDrugDAO getDrugDAO() {
         return drugDAO;

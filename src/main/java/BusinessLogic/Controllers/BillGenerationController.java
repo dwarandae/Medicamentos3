@@ -1,13 +1,14 @@
 package BusinessLogic.Controllers;
 
-import BusinessLogic.Services.BillService;
 import BusinessLogic.Services.CustomerService;
+import BusinessLogic.Services.DrugService;
 import DataAccess.Entities.Customer;
+import DataAccess.Entities.Drug;
 
 public class BillGenerationController {
     
-    private BillService billService;
     private CustomerService customerService;
+    private DrugService drugService;
     
     public Customer getCustomerByUsername(String username) {
         return customerService.findCustomerByUsername(username);
@@ -16,19 +17,13 @@ public class BillGenerationController {
     public boolean saveCustomer(Customer customer) {
         return customerService.saveCustomer(customer);
     }
-
-    /**
-     * @return the billService
-     */
-    public BillService getBillService() {
-        return billService;
+    
+    public Drug getDrugById(long id) {
+        return drugService.findDrugById(id);
     }
-
-    /**
-     * @param billService the billService to set
-     */
-    public void setBillService(BillService billService) {
-        this.billService = billService;
+    
+    public boolean saveDrug(Drug drug) {
+        return drugService.saveDrug(drug);
     }
 
     /**

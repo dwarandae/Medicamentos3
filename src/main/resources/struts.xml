@@ -68,8 +68,13 @@
         </action>
         
         <action name="doPurchase" class="Presentation.Beans.PurchaseBean" method="doPurchase">
-            <result name="success">/purchase/success.jsp</result><!-- Redirect to bill -->
+            <!-- Redirect to bill -->
+            <result name="success" type="redirectAction">
+                <param name="actionName">indexBill</param>
+                <param name="namespace">/bill</param>
+            </result>
             <result name="error">/purchase/error.jsp</result>
+            <result name="input">/purchase/index.jsp</result>
         </action>
         
         <action name="deleteItem" class="Presentation.Beans.PurchaseBean" method="deleteItem">

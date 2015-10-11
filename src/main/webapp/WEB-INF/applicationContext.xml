@@ -56,6 +56,7 @@
     <bean id="customerCreationController" class="BusinessLogic.Controllers.CustomerCreationController" autowire="byName" scope="singleton" />
     <bean id="drugsController" class="BusinessLogic.Controllers.DrugsController" autowire="byName" scope="singleton" />
     <bean id="sessionController" class="BusinessLogic.Controllers.SessionController" autowire="byName" scope="singleton" />
+    <bean id="billGenerationController" class="BusinessLogic.Controllers.BillGenerationController" autowire="byName" scope="singleton" />
         
     <!--Services -->
     <bean id="administratorService" class="BusinessLogic.Services.AdministratorService" autowire="byName" scope="singleton" />

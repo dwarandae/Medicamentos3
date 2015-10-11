@@ -47,7 +47,7 @@
                                                 <td>Items:</td>
                                                 <td>
                                                     <!-- Iter sobre los items del carrito de compras -->
-                                                    <s:iterator value="purchase.purchaseItems">
+                                                    <s:iterator value="purchase.purchaseItems" status="stat">
                                                         <div class="ui list">
                                                             <div class="item">
                                                                 <i class="eyedropper icon"></i>                                                        
@@ -56,7 +56,9 @@
                                                                     <div class="description">
                                                                         <div class="ui list">
                                                                             <div class="fluid item">
-                                                                                <div class="right floated content"><s:property value="amount"/></div>
+                                                                                <div class="right floated content">
+                                                                                    <s:textfield value="%{amount}" name="amounts[%{#stat.index}]" id="itemAmount%{#stat.index}" theme="simple" cssClass="ui mini input" style="text-align: right"/>                                                                         
+                                                                                </div>
                                                                                 Cantidad:
                                                                             </div>
                                                                             <div class="item">
@@ -84,6 +86,7 @@
                                         </tbody>
                                     </table>
                                     <s:submit type="button" theme="simple" cssClass="ui inverted green button" value="Comprar" id="submit"/>
+                                    <s:fielderror theme="simple" cssClass="ui list"/>
                                 </s:form>                                
                             </div>
                         </div>                                                

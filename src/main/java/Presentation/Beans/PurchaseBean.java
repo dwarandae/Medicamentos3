@@ -22,6 +22,7 @@ public class PurchaseBean extends ActionSupport implements SessionAware {
     private BillGenerationController billGenerationController;
     private String selectedPaymentMethod;
     private List<String> paymentMethods = Arrays.asList("Efectivo", "Tarjeta");
+    private List<Integer> amounts; // Weak method for tracking amounts typed by user (item order may not match)
     
     private Map<String, Object> userSession;
     
@@ -30,15 +31,18 @@ public class PurchaseBean extends ActionSupport implements SessionAware {
     
     private final String EMPTY = "empty";
     
-    public String index() {
+    public String index() {      
         purchase = (Purchase) userSession.get(PURCHASE);
         
         if (purchase == null || purchase.getPurchaseItems().isEmpty()) {
             return EMPTY;
         } else {
+            amounts = new ArrayList<>();
             Long totalPrice = 0L;
-            for (PurchaseItem purchaseItem : purchase.getPurchaseItems())
+            for (PurchaseItem purchaseItem : purchase.getPurchaseItems()) {
                 totalPrice += purchaseItem.getPrice() * purchaseItem.getAmount();
+                amounts.add(purchaseItem.getAmount());
+            }
             purchase.setTotalPrice(totalPrice);
             return SUCCESS;
         }
@@ -46,10 +50,36 @@ public class PurchaseBean extends ActionSupport implements SessionAware {
     
     public String doPurchase() {
         String username = (String) userSession.get(USERNAME);
-        System.out.println(username);
         customer = billGenerationController.getCustomerByUsername(username);
+        purchase = (Purchase) userSession.get(PURCHASE);
+        
+        // Stock availability check
+        int i = 0, stock;
+        Long totalPrice = 0L;
+        for (PurchaseItem purchaseItem : purchase.getPurchaseItems()) {
+            totalPrice += purchaseItem.getPrice() * amounts.get(i++);
+            // Check for each item to purchase if there are enough to sell
+            stock = billGenerationController.getDrugById(purchaseItem.getDrug().getDrugId()).getInventoryItem().getAmount();
+            if (purchaseItem.getAmount() > stock) {
+                addFieldError("itemAmount" + (i-1), "No se tiene inventario suficiente de " + purchaseItem.getDrug().getBrandName());
+                return INPUT;
+            }
+        }
+        
+        // After checking items' availability, proceed to modify inventory
+        i = 0;
+        for (PurchaseItem purchaseItem : purchase.getPurchaseItems()) {
+            Drug drugToModify = billGenerationController.getDrugById(purchaseItem.getDrug().getDrugId());
+            stock = drugToModify.getInventoryItem().getAmount();
+            drugToModify.getInventoryItem().setAmount(stock - amounts.get(i++));
+            if (!billGenerationController.saveDrug(drugToModify))
+                return ERROR;
+        }
+        
+        // Create bill and save customer's purchase
         Bill bill = new Bill(new Date(), selectedPaymentMethod);
         purchase.setBill(bill);
+        purchase.setTotalPrice(totalPrice);
         customer.getPurchases().add(purchase);
         if (billGenerationController.saveCustomer(customer))
             return SUCCESS;
@@ -67,12 +97,12 @@ public class PurchaseBean extends ActionSupport implements SessionAware {
         if (purchase == null || purchase.getPurchaseItems().isEmpty()) {
             return EMPTY;
         } else {
-            String username = (String) userSession.get(USERNAME);
-            System.out.println(username);
-            customer = billGenerationController.getCustomerByUsername(username);
+            amounts = new ArrayList<>();
             Long totalPrice = 0L;
-            for (PurchaseItem purchaseItem : purchase.getPurchaseItems())
+            for (PurchaseItem purchaseItem : purchase.getPurchaseItems()) {
                 totalPrice += purchaseItem.getPrice() * purchaseItem.getAmount();
+                amounts.add(purchaseItem.getAmount());
+            }
             purchase.setTotalPrice(totalPrice);
             return SUCCESS;
         }
@@ -83,6 +113,8 @@ public class PurchaseBean extends ActionSupport implements SessionAware {
         List<PurchaseItem> testItems = new ArrayList<>();
         testItems.add(new PurchaseItem(10, 5000, new Drug("Dolex", "Acetaminofen", "yeah", "Genfar", "100 ml", "Hazardous", "Tablet", "Oral", "sth", "none", true, "none", 10000, 50)));
         testItems.add(new PurchaseItem(300, 25000, new Drug("Dolex Forte", "Acetaminofen", "yeah", "Genfar", "100 ml", "Hazardous", "Tablet", "Oral", "sth", "none", true, "none", 20000, 100)));
+        testItems.get(0).setPurchaseItemId(1L);
+        testItems.get(1).setPurchaseItemId(2L);
         Purchase testPurchase = new Purchase(10*5000L, testBill, testItems);
         userSession.put(USERNAME, "el_brayan");
         userSession.put(PURCHASE, testPurchase);
@@ -161,6 +193,20 @@ public class PurchaseBean extends ActionSupport implements SessionAware {
      */
     public void setPaymentMethods(List<String> paymentMethods) {
         this.paymentMethods = paymentMethods;
+    }
+
+    /**
+     * @return the amounts
+     */
+    public List<Integer> getAmounts() {
+        return amounts;
+    }
+
+    /**
+     * @param amounts the amounts to set
+     */
+    public void setAmounts(List<Integer> amounts) {
+        this.amounts = amounts;
     }
     
 }
