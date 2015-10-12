@@ -36,7 +36,11 @@ public class DrugList extends ActionSupport implements SessionAware {
     
     public String addItemToCart() {
         customer = (Customer) userSession.get(USERNAME);
-        purchase = (Purchase) userSession.get(PURCHASE);        
+        purchase = (Purchase) userSession.get(PURCHASE);
+        if (purchase == null) {
+            purchase = new Purchase();
+            purchase.setPurchaseItems(new ArrayList<PurchaseItem>());
+        }
         long id = itemIdToAdd.get(0);
         Drug drugToAdd = drugsController.findDrugById(id);
         long price = (long) (customer.isEpsCustomer() ? drugToAdd.getPrice() : drugToAdd.getPrice() * 0.9);
