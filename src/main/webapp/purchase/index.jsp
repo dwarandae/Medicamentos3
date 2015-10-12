@@ -52,12 +52,19 @@
                                                             <div class="item">
                                                                 <i class="eyedropper icon"></i>                                                        
                                                                 <div class="content" style="width: 100%">
-                                                                    <div class="header"><s:property value="drug.brandName"/></div>
+                                                                    <div class="header">
+                                                                        <s:property value="drug.brandName"/>
+                                                                        <div class="right floated content">
+                                                                            <s:submit type="button" theme="simple" cssClass="mini circular ui icon basic red button" name="itemIdToDelete[%{#stat.index}]" id="item%{purchaseItemId}" value="%{purchaseItemId}">
+                                                                                <i class='remove icon'></i>
+                                                                            </s:submit>
+                                                                        </div>
+                                                                    </div>
                                                                     <div class="description">
                                                                         <div class="ui list">
                                                                             <div class="fluid item">
                                                                                 <div class="right floated content">
-                                                                                    <s:textfield value="%{amount}" name="amounts[%{#stat.index}]" id="itemAmount%{#stat.index}" theme="simple" cssClass="ui mini input" style="text-align: right"/>                                                                         
+                                                                                    <s:textfield value="%{amount}" name="amounts[%{#stat.index}]" id="itemAmount%{#stat.index}" theme="simple" cssClass="ui mini input" style="text-align: right" size="10" required="true"/>                                                                         
                                                                                 </div>
                                                                                 Cantidad:
                                                                             </div>
@@ -85,7 +92,7 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <s:submit type="button" theme="simple" cssClass="ui inverted green button" value="Comprar" id="submit"/>
+                                    <s:submit theme="simple" cssClass="ui inverted green button" value="Comprar" id="submit"/>
                                     <s:fielderror theme="simple" cssClass="ui list"/>
                                 </s:form>                                
                             </div>

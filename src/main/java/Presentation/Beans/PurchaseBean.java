@@ -23,6 +23,8 @@ public class PurchaseBean extends ActionSupport implements SessionAware {
     private String selectedPaymentMethod;
     private List<String> paymentMethods = Arrays.asList("Efectivo", "Tarjeta");
     private List<Integer> amounts; // Weak method for tracking amounts typed by user (item order may not match)
+    private List<Integer> itemIdToDelete; // Use for checking which item to delete
+    private static int counter = 0; // delete when no further tests are required
     
     private Map<String, Object> userSession;
     
@@ -30,6 +32,7 @@ public class PurchaseBean extends ActionSupport implements SessionAware {
     private final String PURCHASE = "purchase";
     
     private final String EMPTY = "empty";
+    private final String DELETE_ITEM = "deleteItem";
     
     public String index() {      
         purchase = (Purchase) userSession.get(PURCHASE);
@@ -49,9 +52,24 @@ public class PurchaseBean extends ActionSupport implements SessionAware {
     }
     
     public String doPurchase() {
-        String username = (String) userSession.get(USERNAME);
-        customer = billGenerationController.getCustomerByUsername(username);
         purchase = (Purchase) userSession.get(PURCHASE);
+        
+        // Delete an item from the shopping cart
+        if (!itemIdToDelete.isEmpty()) {
+            long id = (long) itemIdToDelete.get(0);
+            PurchaseItem itemToDelete;
+            for (PurchaseItem purchaseItem : purchase.getPurchaseItems()) {
+                if (purchaseItem.getPurchaseItemId() == id) {
+                    itemToDelete = purchaseItem;
+                    purchase.getPurchaseItems().remove(itemToDelete);
+                    userSession.put(PURCHASE, purchase);
+                    return DELETE_ITEM;
+                }
+            }            
+        }
+        
+        String username = (String) userSession.get(USERNAME);
+        customer = billGenerationController.getCustomerByUsername(username);        
         
         // Stock availability check
         int i = 0, stock;
@@ -86,12 +104,8 @@ public class PurchaseBean extends ActionSupport implements SessionAware {
         return ERROR;
     }
     
-    public String deleteItem() {
-        return SUCCESS;
-    }
-    
     public String testIndex() {
-        setTestData();
+        if (counter++ == 0) setTestData();
         purchase = (Purchase) userSession.get(PURCHASE);
         
         if (purchase == null || purchase.getPurchaseItems().isEmpty()) {
@@ -207,6 +221,20 @@ public class PurchaseBean extends ActionSupport implements SessionAware {
      */
     public void setAmounts(List<Integer> amounts) {
         this.amounts = amounts;
+    }
+
+    /**
+     * @return the itemIdToDelete
+     */
+    public List<Integer> getItemIdToDelete() {
+        return itemIdToDelete;
+    }
+
+    /**
+     * @param itemIdToDelete the itemIdToDelete to set
+     */
+    public void setItemIdToDelete(List<Integer> itemIdToDelete) {
+        this.itemIdToDelete = itemIdToDelete;
     }
     
 }

@@ -3,6 +3,7 @@
 <struts>
 
     <constant name="struts.devMode" value="true"/>
+    <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
 		
     <package name="index" namespace="/" extends="struts-default">
         <default-interceptor-ref name="validationWorkflowStack"/>
@@ -62,7 +63,7 @@
         
         <default-interceptor-ref name="validationWorkflowStack"/>
         
-        <action name="indexPurchase" class="Presentation.Beans.PurchaseBean" method="testIndex">
+        <action name="indexPurchase" class="Presentation.Beans.PurchaseBean" method="index">
             <result name="success">/purchase/index.jsp</result>
             <result name="empty">/purchase/empty.jsp</result>
         </action>
@@ -73,12 +74,11 @@
                 <param name="actionName">indexBill</param>
                 <param name="namespace">/bill</param>
             </result>
+            <result name="deleteItem" type="redirectAction">
+                <param name="actionName">indexPurchase</param>
+            </result>
             <result name="error">/purchase/error.jsp</result>
             <result name="input">/purchase/index.jsp</result>
-        </action>
-        
-        <action name="deleteItem" class="Presentation.Beans.PurchaseBean" method="deleteItem">
-            <result>/purchase/index.jsp</result>
         </action>
         
     </package>
