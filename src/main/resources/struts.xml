@@ -54,8 +54,27 @@
             <result name="success">/signIn/indexAdmin.jsp</result>
         </action>
         <action name="indexCustomer" class="Presentation.Beans.SignInBean" method = "indexCustomer">
-            <result name="success">/signIn/indexCustomer.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">indexDrugList</param>
+                <param name="namespace">/drugList</param>
+            </result>
         </action>  	
+        
+    </package>
+    
+    <package name="drugList" namespace="/drugList" extends="struts-default">
+        
+        <default-interceptor-ref name="validationWorkflowStack"/>
+        
+        <action name="indexDrugList" class="Presentation.Beans.DrugList" method="index">
+            <result>/drugList/index.jsp</result>
+        </action>
+        
+        <action name="addItemToCart" class="Presentation.Beans.DrugList" method="addItemToCart">
+            <result name="success" type="redirectAction">
+                <param name="actionName">indexDrugList</param>
+            </result>
+        </action>
         
     </package>
     

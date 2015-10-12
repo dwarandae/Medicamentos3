@@ -64,7 +64,7 @@
                                                                         <div class="ui list">
                                                                             <div class="fluid item">
                                                                                 <div class="right floated content">
-                                                                                    <s:textfield value="%{amount}" name="amounts[%{#stat.index}]" id="itemAmount%{#stat.index}" theme="simple" cssClass="ui mini input" style="text-align: right" size="10" required="true"/>                                                                         
+                                                                                    <s:textfield value="%{amount}" name="amounts[%{#stat.index}]" id="itemAmount%{#stat.index}" theme="simple" cssClass="ui mini input" style="text-align: right" size="10" required="true"/>
                                                                                 </div>
                                                                                 Cantidad:
                                                                             </div>

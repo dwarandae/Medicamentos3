@@ -24,7 +24,6 @@ public class PurchaseBean extends ActionSupport implements SessionAware {
     private List<String> paymentMethods = Arrays.asList("Efectivo", "Tarjeta");
     private List<Integer> amounts; // Weak method for tracking amounts typed by user (item order may not match)
     private List<Integer> itemIdToDelete; // Use for checking which item to delete
-    private static int counter = 0; // delete when no further tests are required
     
     private Map<String, Object> userSession;
     
@@ -33,6 +32,8 @@ public class PurchaseBean extends ActionSupport implements SessionAware {
     
     private final String EMPTY = "empty";
     private final String DELETE_ITEM = "deleteItem";
+    
+    private static int counter = 0; // delete when no further tests are required
     
     public String index() {      
         purchase = (Purchase) userSession.get(PURCHASE);

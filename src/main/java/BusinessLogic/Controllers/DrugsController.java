@@ -11,6 +11,10 @@ public class DrugsController {
     public List<Drug> findAllDrugs() {
         return drugService.getAllDrugs();
     }
+    
+    public Drug findDrugById(Long id) {
+        return drugService.findDrugById(id);
+    }
 
     public DrugService getDrugService() {
         return drugService;

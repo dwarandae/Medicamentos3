@@ -63,9 +63,9 @@
                             </s:a>
                         </div>
                         <div class="column">
-                            <s:url id="purchase" namespace='/purchase' action='indexPurchase'/>
-                            <s:a href="%{purchase}">
-                                <button class="huge ui inverted button">Purcharse</button>
+                            <s:url id="drugList" namespace='/drugList' action='indexDrugList'/>
+                            <s:a href="%{drugList}">
+                                <button class="huge ui inverted button">Drug list</button>
                             </s:a>
                         </div>
                     </div>
