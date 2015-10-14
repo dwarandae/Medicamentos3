@@ -17,6 +17,7 @@
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.import_files">/import.sql</prop>
             </props>
         </property>
     </bean> 
@@ -53,14 +54,17 @@
     <!--Controllers -->
     <bean id="administratorAccountController" class="BusinessLogic.Controllers.AdministratorAccountController" autowire="byName" scope="singleton" />
     <bean id="authController" class="BusinessLogic.Controllers.AuthController" autowire="byName" scope="singleton" />
-    <bean id="customerCreationController" class="BusinessLogic.Controllers.CustomerCreationController" autowire="byName" scope="singleton" />
+    <bean id="customerController" class="BusinessLogic.Controllers.CustomerController" autowire="byName" scope="singleton" />
     <bean id="drugsController" class="BusinessLogic.Controllers.DrugsController" autowire="byName" scope="singleton" />
     <bean id="sessionController" class="BusinessLogic.Controllers.SessionController" autowire="byName" scope="singleton" />
-    <bean id="billGenerationController" class="BusinessLogic.Controllers.BillGenerationController" autowire="byName" scope="singleton" />
+    <bean id="billController" class="BusinessLogic.Controllers.BillController" autowire="byName" scope="singleton" />
+    <bean id="purchaseController" class="BusinessLogic.Controllers.PurchaseController" autowire="byName" scope="singleton" />
         
     <!--Services -->
     <bean id="administratorService" class="BusinessLogic.Services.AdministratorService" autowire="byName" scope="singleton" />
     <bean id="customerService" class="BusinessLogic.Services.CustomerService" autowire="byName" scope="singleton" />
     <bean id="drugService" class="BusinessLogic.Services.DrugService" autowire="byName" scope="singleton" />
+    <bean id="billService" class="BusinessLogic.Services.BillService" autowire="byName" scope="singleton" />
+    <bean id="purchaseService" class="BusinessLogic.Services.PurchaseService" autowire="byName" scope="singleton" />
 
 </beans>

@@ -26,7 +26,10 @@
                                     <s:property value="#session.username"/>
                                     <i class="dropdown icon"></i>
                                     <div class="menu">
-                                        <div class="item">Cerrar sesión</div>
+                                        <s:url id="signOut" namespace='/signOut' action='indexSignOut'/>
+                                        <s:a href="%{signOut}">
+                                            <div class="item" style="color: #000000">Cerrar sesión</div>
+                                        </s:a>
                                     </div>
                                 </div>
                             </div>

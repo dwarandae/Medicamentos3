@@ -26,7 +26,10 @@
                                     <s:property value="#session.username"/>
                                     <i class="dropdown icon"></i>
                                     <div class="menu">
-                                        <div class="item">Cerrar sesión</div>
+                                        <s:url id="signOut" namespace='/signOut' action='indexSignOut'/>
+                                        <s:a href="%{signOut}">
+                                            <div class="item" style="color: #000000">Cerrar sesión</div>
+                                        </s:a>
                                     </div>
                                 </div>
                             </div>
@@ -55,7 +58,7 @@
                                                                     <div class="header">
                                                                         <s:property value="drug.brandName"/>
                                                                         <div class="right floated content">
-                                                                            <s:submit type="button" theme="simple" cssClass="mini circular ui icon basic red button" name="itemIdToDelete[%{#stat.index}]" id="item%{purchaseItemId}" value="%{purchaseItemId}">
+                                                                            <s:submit type="button" theme="simple" cssClass="mini circular ui icon basic red button" name="itemIdToDelete" id="item%{purchaseItemId}" value="%{purchaseItemId}">
                                                                                 <i class='remove icon'></i>
                                                                             </s:submit>
                                                                         </div>

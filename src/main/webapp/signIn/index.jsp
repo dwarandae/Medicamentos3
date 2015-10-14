@@ -35,31 +35,24 @@
                     </div>                    
                 </div>
             </div>
-            <div class="row" style="height: 100%; background-color: #21B7D0; color: #FFFFFF">
+            <div class="row" style="height: 100%; background-color: #F3F5F8">
                 <div class="ui center aligned padded four column grid" style="padding-top: 4rem">
                     <div class="row">
-                        <img class="ui lmedium circular image" src="resources/template/images/logo.png" />
-                    </div>
+                        <h1 style="font-size: 5rem">Ingresa</h1>
+                    </div>                  
                     <div class="row">
-                        <h1 style="font-size: 5rem">Registro</h1>
-                    </div>
-                    <div class="row">
-                        <div class="ten wide column">
-                            <div class="ui horizontal divider" style="color: #FFFFFF">Siempre precios bajos</div>
-                        </div>                        
-                    </div>                    
-                    <div class="row">
-                        <s:form cssClass="ui form" action="signIn" namespace="/signIn">
-                                <div class="field">
-                                    <label>Nombre de la cuenta</label>
-                                    <s:textfield name="account.username" id="accountUsername"/>
-                                </div>
-                                <div class="field">
-                                    <label>Contraseña</label>
-                                    <s:textfield name="account.password" id="accountPassword"/>
-                                </div>
-                                <s:submit type="button" cssClass="ui inverted red button" value="Ingresar"/>                         
-                            </s:form>
+                        <s:form theme="simple" cssClass="ui form" action="signIn" namespace="/signIn">
+                            <div class="field">
+                                <label>Nombre de la cuenta</label>
+                                <s:textfield name="account.username" id="accountUsername"/>
+                            </div>
+                            <div class="field">
+                                <label>Contraseña</label>
+                                <s:password name="account.password" id="accountPassword"/>
+                            </div>
+                            <s:submit type="button" theme="simple" cssClass="ui inverted red button" value="Ingresar"/>
+                            <s:fielderror theme="simple" cssClass="ui list"/>
+                        </s:form>
                     </div>
                 </div>
             </div>

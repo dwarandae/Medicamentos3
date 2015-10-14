@@ -26,7 +26,10 @@
                                     <s:property value="#session.username"/>
                                     <i class="dropdown icon"></i>
                                     <div class="menu">
-                                        <div class="item">Cerrar sesión</div>
+                                        <s:url id="signOut" namespace='/signOut' action='indexSignOut'/>
+                                        <s:a href="%{signOut}">
+                                            <div class="item" style="color: #000000">Cerrar sesión</div>
+                                        </s:a>
                                     </div>
                                 </div>
                             </div>
@@ -52,7 +55,9 @@
                                     <s:iterator value="drugs" status="stat">
                                         <div class="item">
                                             <div class="right floated content">
-                                                <s:submit theme="simple" cssClass="ui inverted orange button" value="Añadir" id="item%{drugId}" name="itemIdToAdd[%{#stat.index}]"/>
+                                                <s:submit type="button" theme="simple" cssClass="ui inverted orange button" value="%{drugId}" id="item%{drugId}" name="itemIdToAdd">
+                                                    Añadir
+                                                </s:submit>
                                             </div>
                                             <i class="eyedropper icon"></i>
                                             <div class="content">
@@ -61,8 +66,7 @@
                                                     Precio: $<s:property value="price"/>. 
                                                     Descripción:
                                                     <s:property value="chemicalName"/> - 
-                                                    <s:property value="pharmaceuticalName"/> - 
-                                                    <s:property value="dosage"/>
+                                                    <s:property value="pharmaceuticalName"/>
                                                 </div>
                                             </div>
                                         </div>

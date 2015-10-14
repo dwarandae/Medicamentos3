@@ -62,6 +62,19 @@
         
     </package>
     
+    <package name="signOut" namespace="/signOut" extends="struts-default">
+        
+        <default-interceptor-ref name="validationWorkflowStack"/>
+        
+        <action name="indexSignOut" class="Presentation.Beans.SignOutBean" method="index">
+            <result name="success" type="redirectAction">
+                <param name="actionName">index</param>
+                <param name="namespace">/</param>
+            </result>
+        </action>
+        
+    </package>
+    
     <package name="drugList" namespace="/drugList" extends="struts-default">
         
         <default-interceptor-ref name="validationWorkflowStack"/>
@@ -72,6 +85,9 @@
         
         <action name="addItemToCart" class="Presentation.Beans.DrugList" method="addItemToCart">
             <result name="success" type="redirectAction">
+                <param name="actionName">indexDrugList</param>
+            </result>
+            <result name="input" type="redirectAction">
                 <param name="actionName">indexDrugList</param>
             </result>
         </action>

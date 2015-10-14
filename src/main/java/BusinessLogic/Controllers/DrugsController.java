@@ -15,6 +15,10 @@ public class DrugsController {
     public Drug findDrugById(Long id) {
         return drugService.findDrugById(id);
     }
+    
+    public boolean saveDrug(Drug drug) {
+        return drugService.saveDrug(drug);
+    }
 
     public DrugService getDrugService() {
         return drugService;

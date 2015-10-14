@@ -1,6 +1,9 @@
 package Presentation.Beans;
 
-import BusinessLogic.Controllers.BillGenerationController;
+import BusinessLogic.Controllers.BillController;
+import BusinessLogic.Controllers.CustomerController;
+import BusinessLogic.Controllers.DrugsController;
+import BusinessLogic.Controllers.PurchaseController;
 import DataAccess.Entities.Bill;
 import DataAccess.Entities.Customer;
 import DataAccess.Entities.Drug;
@@ -19,11 +22,14 @@ public class PurchaseBean extends ActionSupport implements SessionAware {
     
     private Purchase purchase;
     private Customer customer;
-    private BillGenerationController billGenerationController;
+    private BillController billController;
+    private PurchaseController purchaseController;
+    private CustomerController customerController;
+    private DrugsController drugsController;
     private String selectedPaymentMethod;
     private List<String> paymentMethods = Arrays.asList("Efectivo", "Tarjeta");
     private List<Integer> amounts; // Weak method for tracking amounts typed by user (item order may not match)
-    private List<Integer> itemIdToDelete; // Use for checking which item to delete
+    private long itemIdToDelete = -1L; // Use for checking which item to delete
     
     private Map<String, Object> userSession;
     
@@ -32,8 +38,6 @@ public class PurchaseBean extends ActionSupport implements SessionAware {
     
     private final String EMPTY = "empty";
     private final String DELETE_ITEM = "deleteItem";
-    
-    private static int counter = 0; // delete when no further tests are required
     
     public String index() {      
         purchase = (Purchase) userSession.get(PURCHASE);
@@ -56,13 +60,10 @@ public class PurchaseBean extends ActionSupport implements SessionAware {
         purchase = (Purchase) userSession.get(PURCHASE);
         
         // Delete an item from the shopping cart
-        if (!itemIdToDelete.isEmpty()) {
-            long id = (long) itemIdToDelete.get(0);
-            PurchaseItem itemToDelete;
+        if (itemIdToDelete != -1L) {
             for (PurchaseItem purchaseItem : purchase.getPurchaseItems()) {
-                if (purchaseItem.getPurchaseItemId() == id) {
-                    itemToDelete = purchaseItem;
-                    purchase.getPurchaseItems().remove(itemToDelete);
+                if (purchaseItem.getPurchaseItemId() == itemIdToDelete) {
+                    purchase.getPurchaseItems().remove(purchaseItem);
                     userSession.put(PURCHASE, purchase);
                     return DELETE_ITEM;
                 }
@@ -70,7 +71,7 @@ public class PurchaseBean extends ActionSupport implements SessionAware {
         }
         
         String username = (String) userSession.get(USERNAME);
-        customer = billGenerationController.getCustomerByUsername(username);        
+        customer = customerController.findCustomerByUsername(username);        
         
         // Stock availability check
         int i = 0, stock;
@@ -78,7 +79,7 @@ public class PurchaseBean extends ActionSupport implements SessionAware {
         for (PurchaseItem purchaseItem : purchase.getPurchaseItems()) {
             totalPrice += purchaseItem.getPrice() * amounts.get(i++);
             // Check for each item to purchase if there are enough to sell
-            stock = billGenerationController.getDrugById(purchaseItem.getDrug().getDrugId()).getInventoryItem().getAmount();
+            stock = drugsController.findDrugById(purchaseItem.getDrug().getDrugId()).getInventoryItem().getAmount();
             if (purchaseItem.getAmount() > stock) {
                 addFieldError("itemAmount" + (i-1), "No se tiene inventario suficiente de " + purchaseItem.getDrug().getBrandName());
                 return INPUT;
@@ -88,51 +89,29 @@ public class PurchaseBean extends ActionSupport implements SessionAware {
         // After checking items' availability, proceed to modify inventory
         i = 0;
         for (PurchaseItem purchaseItem : purchase.getPurchaseItems()) {
-            Drug drugToModify = billGenerationController.getDrugById(purchaseItem.getDrug().getDrugId());
+            Drug drugToModify = drugsController.findDrugById(purchaseItem.getDrug().getDrugId());
             stock = drugToModify.getInventoryItem().getAmount();
             drugToModify.getInventoryItem().setAmount(stock - amounts.get(i++));
-            if (!billGenerationController.saveDrug(drugToModify))
+            purchaseItem.setPurchaseItemId(null);
+            if (!drugsController.saveDrug(drugToModify) || !purchaseController.savePurchaseItem(purchaseItem))
                 return ERROR;
         }
         
         // Create bill and save customer's purchase
         Bill bill = new Bill(new Date(), selectedPaymentMethod);
+        if (!billController.saveBill(bill))
+            return ERROR;
+        
         purchase.setBill(bill);
         purchase.setTotalPrice(totalPrice);
-        customer.getPurchases().add(purchase);
-        if (billGenerationController.saveCustomer(customer))
-            return SUCCESS;
-        return ERROR;
-    }
-    
-    public String testIndex() {
-        if (counter++ == 0) setTestData();
-        purchase = (Purchase) userSession.get(PURCHASE);
+        if (!purchaseController.savePurchase(purchase))
+            return ERROR;
         
-        if (purchase == null || purchase.getPurchaseItems().isEmpty()) {
-            return EMPTY;
-        } else {
-            amounts = new ArrayList<>();
-            Long totalPrice = 0L;
-            for (PurchaseItem purchaseItem : purchase.getPurchaseItems()) {
-                totalPrice += purchaseItem.getPrice() * purchaseItem.getAmount();
-                amounts.add(purchaseItem.getAmount());
-            }
-            purchase.setTotalPrice(totalPrice);
-            return SUCCESS;
-        }
-    }
-    
-    private void setTestData() {
-        Bill testBill = new Bill(new Date(), "efectivo");
-        List<PurchaseItem> testItems = new ArrayList<>();
-        testItems.add(new PurchaseItem(10, 5000, new Drug("Dolex", "Acetaminofen", "yeah", "Genfar", "100 ml", "Hazardous", "Tablet", "Oral", "sth", "none", true, "none", 10000, 50)));
-        testItems.add(new PurchaseItem(300, 25000, new Drug("Dolex Forte", "Acetaminofen", "yeah", "Genfar", "100 ml", "Hazardous", "Tablet", "Oral", "sth", "none", true, "none", 20000, 100)));
-        testItems.get(0).setPurchaseItemId(1L);
-        testItems.get(1).setPurchaseItemId(2L);
-        Purchase testPurchase = new Purchase(10*5000L, testBill, testItems);
-        userSession.put(USERNAME, "el_brayan");
-        userSession.put(PURCHASE, testPurchase);
+        customer.getPurchases().add(purchase);
+        if (!customerController.saveCustomer(customer))
+            return ERROR;
+        
+        return SUCCESS;
     }
 
     @Override
@@ -169,17 +148,17 @@ public class PurchaseBean extends ActionSupport implements SessionAware {
     }
 
     /**
-     * @return the billGenerationController
+     * @return the billController
      */
-    public BillGenerationController getBillGenerationController() {
-        return billGenerationController;
+    public BillController getBillController() {
+        return billController;
     }
 
     /**
-     * @param billGenerationController the billGenerationController to set
+     * @param billController the billController to set
      */
-    public void setBillGenerationController(BillGenerationController billGenerationController) {
-        this.billGenerationController = billGenerationController;
+    public void setBillController(BillController billController) {
+        this.billController = billController;
     }
 
     /**
@@ -227,15 +206,57 @@ public class PurchaseBean extends ActionSupport implements SessionAware {
     /**
      * @return the itemIdToDelete
      */
-    public List<Integer> getItemIdToDelete() {
+    public long getItemIdToDelete() {
         return itemIdToDelete;
     }
 
     /**
      * @param itemIdToDelete the itemIdToDelete to set
      */
-    public void setItemIdToDelete(List<Integer> itemIdToDelete) {
+    public void setItemIdToDelete(long itemIdToDelete) {
         this.itemIdToDelete = itemIdToDelete;
+    }
+
+    /**
+     * @return the purchaseController
+     */
+    public PurchaseController getPurchaseController() {
+        return purchaseController;
+    }
+
+    /**
+     * @param purchaseController the purchaseController to set
+     */
+    public void setPurchaseController(PurchaseController purchaseController) {
+        this.purchaseController = purchaseController;
+    }
+
+    /**
+     * @return the customerController
+     */
+    public CustomerController getCustomerController() {
+        return customerController;
+    }
+
+    /**
+     * @param customerController the customerController to set
+     */
+    public void setCustomerController(CustomerController customerController) {
+        this.customerController = customerController;
+    }
+
+    /**
+     * @return the drugsController
+     */
+    public DrugsController getDrugsController() {
+        return drugsController;
+    }
+
+    /**
+     * @param drugsController the drugsController to set
+     */
+    public void setDrugsController(DrugsController drugsController) {
+        this.drugsController = drugsController;
     }
     
 }

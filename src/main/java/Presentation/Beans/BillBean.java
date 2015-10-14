@@ -1,16 +1,12 @@
 package Presentation.Beans;
 
-import BusinessLogic.Controllers.BillGenerationController;
+import BusinessLogic.Controllers.BillController;
+import BusinessLogic.Controllers.CustomerController;
 import DataAccess.Entities.Bill;
 import DataAccess.Entities.Customer;
-import DataAccess.Entities.Drug;
 import DataAccess.Entities.Purchase;
-import DataAccess.Entities.PurchaseItem;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionSupport;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
 
@@ -19,7 +15,8 @@ public class BillBean extends ActionSupport implements SessionAware {
     private Purchase purchase;
     private Bill bill;
     private Customer customer;
-    private BillGenerationController billGenerationController;
+    private BillController billController;
+    private CustomerController customerController;
     
     private Map<String, Object> userSession;
     
@@ -29,30 +26,9 @@ public class BillBean extends ActionSupport implements SessionAware {
     public String index() {
         purchase = (Purchase) userSession.get(PURCHASE);
         String username = (String) userSession.get(USERNAME);
-        customer = billGenerationController.getCustomerByUsername(username);
+        customer = customerController.findCustomerByUsername(username);
         bill = purchase.getBill();
         return SUCCESS;
-    }
-    
-    public String testIndex() {
-        setTestData();
-        purchase = (Purchase) userSession.get(PURCHASE);
-        String username = (String) userSession.get(USERNAME);
-        bill = purchase.getBill();
-        System.out.println(username + " - " + bill + " - " + purchase.getTotalPrice());
-        return SUCCESS;
-    }
-    
-    private void setTestData() {
-        Customer testCustomer = new Customer("name", "last-name", "el_brayan", "pwd", "email", "1234", true);
-        customer = testCustomer;
-        Bill testBill = new Bill(new Date(), "efectivo");
-        List<PurchaseItem> testItems = new ArrayList<>();
-        testItems.add(new PurchaseItem(10, 5000, new Drug("Dolex", "Acetaminofen", "yeah", "Genfar", "100 ml", "Hazardous", "Tablet", "Oral", "sth", "none", true, "none", 10000, 50)));
-        testItems.add(new PurchaseItem(300, 25000, new Drug("Dolex Forte", "Acetaminofen", "yeah", "Genfar", "100 ml", "Hazardous", "Tablet", "Oral", "sth", "none", true, "none", 20000, 100)));
-        Purchase testPurchase = new Purchase(10*5000L, testBill, testItems);
-        userSession.put(USERNAME, testCustomer.getUsername());
-        userSession.put(PURCHASE, testPurchase);
     }
 
     @Override
@@ -75,17 +51,17 @@ public class BillBean extends ActionSupport implements SessionAware {
     }
 
     /**
-     * @return the billGenerationController
+     * @return the billController
      */
-    public BillGenerationController getBillGenerationController() {
-        return billGenerationController;
+    public BillController getBillController() {
+        return billController;
     }
 
     /**
-     * @param billGenerationController the billGenerationController to set
+     * @param billController the billController to set
      */
-    public void setBillGenerationController(BillGenerationController billGenerationController) {
-        this.billGenerationController = billGenerationController;
+    public void setBillController(BillController billController) {
+        this.billController = billController;
     }
 
     /**
@@ -114,6 +90,20 @@ public class BillBean extends ActionSupport implements SessionAware {
      */
     public void setPurchase(Purchase purchase) {
         this.purchase = purchase;
+    }
+
+    /**
+     * @return the customerController
+     */
+    public CustomerController getCustomerController() {
+        return customerController;
+    }
+
+    /**
+     * @param customerController the customerController to set
+     */
+    public void setCustomerController(CustomerController customerController) {
+        this.customerController = customerController;
     }
     
 }
