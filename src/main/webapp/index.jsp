@@ -63,7 +63,10 @@
                             </s:a>
                         </div>
                     </div>
-                </div>
+                </div>                
+            </div>
+            <div class="row">
+                JSessionId: <%= session.getId()%>
             </div>
         </div>
     </body>

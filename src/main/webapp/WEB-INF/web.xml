@@ -22,4 +22,7 @@
         <filter-name>struts2</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    
+    <!-- Sticky session -->
+    <distributable/>
 </web-app>

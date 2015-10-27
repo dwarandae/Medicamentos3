@@ -14,7 +14,7 @@
         <property name="packagesToScan" value="DataAccess.Entities" />
         <property name="hibernateProperties">
             <props>
-                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.hbm2ddl.auto">create</prop>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.hbm2ddl.import_files">/import.sql</prop>
@@ -49,10 +49,8 @@
     <bean id="itemDAO" class="DataAccess.DAO.Imp.ItemDAO" autowire="byName" scope="prototype" parent="genericDao" />
     <bean id="purchaseDAO" class="DataAccess.DAO.Imp.PurchaseDAO" autowire="byName" scope="prototype" parent="genericDao" />
     <bean id="purchaseItemDAO" class="DataAccess.DAO.Imp.PurchaseItemDAO" autowire="byName" scope="prototype" parent="genericDao" />
-    <bean id="shoppingCartDAO" class="DataAccess.DAO.Imp.ShoppingCartDAO" autowire="byName" scope="prototype" parent="genericDao" />
     
     <!--Controllers -->
-    <bean id="administratorAccountController" class="BusinessLogic.Controllers.AdministratorAccountController" autowire="byName" scope="singleton" />
     <bean id="authController" class="BusinessLogic.Controllers.AuthController" autowire="byName" scope="singleton" />
     <bean id="customerController" class="BusinessLogic.Controllers.CustomerController" autowire="byName" scope="singleton" />
     <bean id="drugsController" class="BusinessLogic.Controllers.DrugsController" autowire="byName" scope="singleton" />
