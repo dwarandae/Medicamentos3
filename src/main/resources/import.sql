@@ -1,3 +1,5 @@
+insert into administrator(account_id, account_email, account_lastname, account_name, account_password, account_username) values (1, 'eladmin@webmaster.com', 'admin', 'el', '123', 'admin');
+
 insert into customer (account_id, account_email, account_lastname, account_name, account_password, account_username, customer_id, is_eps_customer) values (1, 'kcook0@upenn.edu', 'Cook', 'Katherine', '123', 'kat', 6155080148, false);
 insert into customer (account_id, account_email, account_lastname, account_name, account_password, account_username, customer_id, is_eps_customer) values (2, 'jburton1@usatoday.com', 'Burton', 'Joyce', 'TxWrP0yAVz1', 'jburton1', 2116216627, false);
 insert into customer (account_id, account_email, account_lastname, account_name, account_password, account_username, customer_id, is_eps_customer) values (3, 'kwheeler2@unicef.org', 'Wheeler', 'Kathy', 'mUUW9SxF', 'kwheeler2', 2180450917, true);

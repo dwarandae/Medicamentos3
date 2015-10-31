@@ -27,7 +27,11 @@ public class DrugList extends ActionSupport implements SessionAware {
     private final String PURCHASE = "purchase";
     
     public String index() {
-        drugs = drugsController.findAllDrugs();
+        // No stock means that the drug is not available atm or won't be
+        drugs = new ArrayList<>();
+        for (Drug drug : drugsController.findAllDrugs())
+            if (drug.getInventoryItem().getAmount() > 0)
+                drugs.add(drug);
         return SUCCESS;
     }
     

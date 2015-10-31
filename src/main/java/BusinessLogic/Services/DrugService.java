@@ -23,6 +23,11 @@ public class DrugService {
     public boolean saveDrug(Drug drug) {
         return drugDAO.save(drug);
     }
+    
+    @Transactional
+    public boolean updateDrug(Drug drug) {
+        return drugDAO.update(drug);
+    }
 
     public IDrugDAO getDrugDAO() {
         return drugDAO;

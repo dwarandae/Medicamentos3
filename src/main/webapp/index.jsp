@@ -65,9 +65,9 @@
                     </div>
                 </div>                
             </div>
-            <div class="row">
+            <h2>
                 JSessionId: <%= session.getId()%>
-            </div>
+            </h2>
         </div>
     </body>
 </html>
