@@ -43,6 +43,12 @@
                         <h1>Medicamentos en registrados</h1>                        
                     </div>
                     <!-- Add option to create drug -->
+                    <div class="row">
+                        <s:url id="addDrug" namespace='/addDrug' action='indexAddDrug'/>
+                        <s:a href="%{addDrug}">
+                            <i class="huge add circle icon"></i>
+                        </s:a>
+                    </div>
                     <div class="row">                        
                         <div class="ui yellow segment" style="width: 70%">
                             <s:form action="modifyDrug" namespace="/adminDrugList" theme="simple">                                

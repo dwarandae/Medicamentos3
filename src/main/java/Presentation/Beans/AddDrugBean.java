@@ -3,31 +3,22 @@ package Presentation.Beans;
 import BusinessLogic.Controllers.DrugsController;
 import DataAccess.Entities.Drug;
 import com.opensymphony.xwork2.ActionSupport;
-import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.struts2.interceptor.SessionAware;
 
-public class ModifyDrugBean extends ActionSupport implements SessionAware {
+public class AddDrugBean extends ActionSupport {
     
-    private Drug drugToModify;
+    private Drug drugToAdd;
     private DrugsController drugsController;
     
-    private Map<String, Object> userSession;
-    
-    private final String DRUG_ID_TO_MODIFY = "drugIdToModify";
-    
     public String index() {
-        drugToModify = drugsController.findDrugById((long) userSession.get(DRUG_ID_TO_MODIFY));
+        drugToAdd = new Drug();
         return SUCCESS;
     }
     
-    /* In order to get all values, a hidden tag must be added for each attribute not showed
-     * in the form. Otherwise, they will be set to null.
-     */
-    public String doModifyDrug() {
-        if (!validateData(drugToModify))
+    public String doAddDrug() {
+        if (!validateData(drugToAdd))
             return INPUT;
-        if (drugsController.updateDrug(drugToModify))
+        if (drugsController.saveDrug(drugToAdd))
             return SUCCESS;
         else
             return ERROR;
@@ -58,23 +49,18 @@ public class ModifyDrugBean extends ActionSupport implements SessionAware {
         return valid;
     }
 
-    @Override
-    public void setSession(Map<String, Object> session) {
-        userSession = session;
+    /**
+     * @return the drugToAdd
+     */
+    public Drug getDrugToAdd() {
+        return drugToAdd;
     }
 
     /**
-     * @return the drugToModify
+     * @param drugToAdd the drugToAdd to set
      */
-    public Drug getDrugToModify() {
-        return drugToModify;
-    }
-
-    /**
-     * @param drugToModify the drugToModify to set
-     */
-    public void setDrugToModify(Drug drugToModify) {
-        this.drugToModify = drugToModify;
+    public void setDrugToAdd(Drug drugToAdd) {
+        this.drugToAdd = drugToAdd;
     }
 
     /**

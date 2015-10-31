@@ -99,6 +99,25 @@
         
     </package>
     
+    <package name="addDrug" namespace="/addDrug" extends="struts-default">
+        
+        <default-interceptor-ref name="validationWorkflowStack"/>
+        
+        <action name="indexAddDrug" class="Presentation.Beans.AddDrugBean" method="index">
+            <result>/admin/addDrug/index.jsp</result>
+        </action>
+        
+        <action name="addDrug" class="Presentation.Beans.AddDrugBean" method="doAddDrug">
+            <result name="success" type="redirectAction">
+                <param name="actionName">indexAdminDrugList</param>
+                <param name="namespace">/adminDrugList</param>
+            </result>
+            <result name="input">/admin/addDrug/index.jsp</result>
+            <result name="error">/admin/addDrug/error.jsp</result>
+        </action>
+        
+    </package>
+    
     <package name="modifyDrug" namespace="/modifyDrug" extends="struts-default">
         
         <default-interceptor-ref name="validationWorkflowStack"/>
@@ -109,8 +128,8 @@
         
         <action name="modifyDrug" class="Presentation.Beans.ModifyDrugBean" method="doModifyDrug">
             <result name="success" type="redirectAction">
-                <param name="actionName">indexModifyDrug</param>
-                <param name="namespace">/modifyDrug</param>
+                <param name="actionName">indexAdminDrugList</param>
+                <param name="namespace">/adminDrugList</param>
             </result>
             <result name="input">/admin/modifyDrug/index.jsp</result>
             <result name="error">/admin/modifyDrug/error.jsp</result>
