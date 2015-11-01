@@ -43,6 +43,10 @@
                         <h1>Medicamentos disponibles</h1>                        
                     </div>
                     <div class="row">
+                        <s:url id="purchaseHistory" namespace='/purchaseHistory' action='indexPurchaseHistory'/>
+                        <s:a href="%{purchaseHistory}">
+                            <i class="huge browser icon"></i>
+                        </s:a>
                         <s:url id="purchase" namespace='/purchase' action='indexPurchase'/>
                         <s:a href="%{purchase}">
                             <i class="huge in cart icon"></i>

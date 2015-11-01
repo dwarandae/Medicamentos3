@@ -58,6 +58,10 @@
                                             <td class="right aligned"><s:property value="customer.customerId"/></td>
                                         </tr>
                                         <tr>
+                                            <td>Asociado a la EPS:</td>
+                                            <td class="right aligned"><s:property value="customer.epsCustomer"/></td>
+                                        </tr>
+                                        <tr>
                                             <td>Fecha de compra:</td>
                                             <td class="right aligned"><s:property value="bill.billDate"/></td>
                                         </tr>

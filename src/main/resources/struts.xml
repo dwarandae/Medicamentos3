@@ -189,5 +189,16 @@
         </action>
                 
     </package>
+    
+    <package name="purchaseHistory" namespace="/purchaseHistory" extends="struts-default">
+        
+        <default-interceptor-ref name="validationWorkflowStack"/>
+        
+        <action name="indexPurchaseHistory" class="Presentation.Beans.PurchaseHistoryBean" method="index">
+            <result name="success">/customer/purchaseHistory/index.jsp</result>
+            <result name="empty">/customer/purchaseHistory/empty.jsp</result>
+        </action>
+        
+    </package>
 		
 </struts>
