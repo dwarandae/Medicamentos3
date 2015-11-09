@@ -4,6 +4,9 @@
 
     <constant name="struts.devMode" value="true"/>
     <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+    
+    <!-- Exclude WSDL URLs -->
+    <constant name="struts.action.excludePattern" value="/webServices/.*"/>
 		
     <package name="index" namespace="/" extends="struts-default">
         <default-interceptor-ref name="validationWorkflowStack"/>
