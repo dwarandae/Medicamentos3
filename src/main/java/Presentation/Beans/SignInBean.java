@@ -55,7 +55,6 @@ public class SignInBean extends ActionSupport implements SessionAware {
         }
         if (found instanceof Customer) {
             System.out.println("Cuenta cliente");
-
             role = CUSTOMER;
         } else {
             role = ADMIN;

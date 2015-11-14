@@ -3,12 +3,16 @@ package BusinessLogic.Controllers;
 import BusinessLogic.Services.CustomerService;
 import DataAccess.Entities.Customer;
 
-public class CustomerCreationController {
+public class CustomerController {
     
     CustomerService customerService;
     
-    public boolean createCustomer(Customer customer) {
+    public boolean saveCustomer(Customer customer) {
         return customerService.saveCustomer(customer);
+    }
+    
+    public Customer findCustomerByUsername(String username) {
+        return customerService.findCustomerByUsername(username);
     }
     
     public boolean isUsernameInvalid(String username) {

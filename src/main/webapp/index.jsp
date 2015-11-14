@@ -63,8 +63,11 @@
                             </s:a>
                         </div>
                     </div>
-                </div>
+                </div>                
             </div>
+            <h2>
+                JSessionId: <%= session.getId()%>
+            </h2>
         </div>
     </body>
 </html>

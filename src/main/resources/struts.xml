@@ -3,6 +3,10 @@
 <struts>
 
     <constant name="struts.devMode" value="true"/>
+    <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+    
+    <!-- Exclude WSDL URLs -->
+    <constant name="struts.action.excludePattern" value="/webServices/.*"/>
 		
     <package name="index" namespace="/" extends="struts-default">
         <default-interceptor-ref name="validationWorkflowStack"/>
@@ -50,11 +54,153 @@
         </action>
         
         <action name="indexAdmin" class="Presentation.Beans.SignInBean" method = "indexAdmin">
-            <result name="success">/signIn/indexAdmin.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">indexAdminDrugList</param>
+                <param name="namespace">/adminDrugList</param>
+            </result>
         </action>
+        
         <action name="indexCustomer" class="Presentation.Beans.SignInBean" method = "indexCustomer">
-            <result name="success">/signIn/indexCustomer.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">indexDrugList</param>
+                <param name="namespace">/drugList</param>
+            </result>
         </action>  	
+        
+    </package>
+    
+    <package name="signOut" namespace="/signOut" extends="struts-default">
+        
+        <default-interceptor-ref name="validationWorkflowStack"/>
+        
+        <action name="indexSignOut" class="Presentation.Beans.SignOutBean" method="index">
+            <result name="success" type="redirectAction">
+                <param name="actionName">index</param>
+                <param name="namespace">/</param>
+            </result>
+        </action>
+        
+    </package>
+    
+    <package name="adminDrugList" namespace="/adminDrugList" extends="struts-default">
+        
+        <default-interceptor-ref name="validationWorkflowStack"/>
+        
+        <action name="indexAdminDrugList" class="Presentation.Beans.AdminDrugListBean" method="index">
+            <result>/admin/drugList/index.jsp</result>
+        </action>
+        
+        <action name="modifyDrug" class="Presentation.Beans.AdminDrugListBean" method="modifyDrug">
+            <result name="success" type="redirectAction">
+                <param name="actionName">indexModifyDrug</param>
+                <param name="namespace">/modifyDrug</param>
+            </result>
+            <result name="input" type="redirectAction">
+                <param name="actionName">indexAdminDrugList</param>
+            </result>
+        </action>
+        
+    </package>
+    
+    <package name="addDrug" namespace="/addDrug" extends="struts-default">
+        
+        <default-interceptor-ref name="validationWorkflowStack"/>
+        
+        <action name="indexAddDrug" class="Presentation.Beans.AddDrugBean" method="index">
+            <result>/admin/addDrug/index.jsp</result>
+        </action>
+        
+        <action name="addDrug" class="Presentation.Beans.AddDrugBean" method="doAddDrug">
+            <result name="success" type="redirectAction">
+                <param name="actionName">indexAdminDrugList</param>
+                <param name="namespace">/adminDrugList</param>
+            </result>
+            <result name="input">/admin/addDrug/index.jsp</result>
+            <result name="error">/admin/addDrug/error.jsp</result>
+        </action>
+        
+    </package>
+    
+    <package name="modifyDrug" namespace="/modifyDrug" extends="struts-default">
+        
+        <default-interceptor-ref name="validationWorkflowStack"/>
+        
+        <action name="indexModifyDrug" class="Presentation.Beans.ModifyDrugBean" method="index">
+            <result>/admin/modifyDrug/index.jsp</result>
+        </action>
+        
+        <action name="modifyDrug" class="Presentation.Beans.ModifyDrugBean" method="doModifyDrug">
+            <result name="success" type="redirectAction">
+                <param name="actionName">indexAdminDrugList</param>
+                <param name="namespace">/adminDrugList</param>
+            </result>
+            <result name="input">/admin/modifyDrug/index.jsp</result>
+            <result name="error">/admin/modifyDrug/error.jsp</result>
+        </action>
+        
+    </package>
+    
+    <package name="drugList" namespace="/drugList" extends="struts-default">
+        
+        <default-interceptor-ref name="validationWorkflowStack"/>
+        
+        <action name="indexDrugList" class="Presentation.Beans.DrugList" method="index">
+            <result>/drugList/index.jsp</result>
+        </action>
+        
+        <action name="addItemToCart" class="Presentation.Beans.DrugList" method="addItemToCart">
+            <result name="success" type="redirectAction">
+                <param name="actionName">indexDrugList</param>
+            </result>
+            <result name="input" type="redirectAction">
+                <param name="actionName">indexDrugList</param>
+            </result>
+        </action>
+        
+    </package>
+    
+    <package name="purchase" namespace="/purchase" extends="struts-default">
+        
+        <default-interceptor-ref name="validationWorkflowStack"/>
+        
+        <action name="indexPurchase" class="Presentation.Beans.PurchaseBean" method="index">
+            <result name="success">/purchase/index.jsp</result>
+            <result name="empty">/purchase/empty.jsp</result>
+        </action>
+        
+        <action name="doPurchase" class="Presentation.Beans.PurchaseBean" method="doPurchase">
+            <!-- Redirect to bill -->
+            <result name="success" type="redirectAction">
+                <param name="actionName">indexBill</param>
+                <param name="namespace">/bill</param>
+            </result>
+            <result name="deleteItem" type="redirectAction">
+                <param name="actionName">indexPurchase</param>
+            </result>
+            <result name="error">/purchase/error.jsp</result>
+            <result name="input">/purchase/index.jsp</result>
+        </action>
+        
+    </package>
+    
+    <package name="bill" namespace="/bill" extends="struts-default">
+        
+        <default-interceptor-ref name="validationWorkflowStack"/>
+        
+        <action name="indexBill" class="Presentation.Beans.BillBean" method="index">
+            <result>/bill/index.jsp</result>
+        </action>
+                
+    </package>
+    
+    <package name="purchaseHistory" namespace="/purchaseHistory" extends="struts-default">
+        
+        <default-interceptor-ref name="validationWorkflowStack"/>
+        
+        <action name="indexPurchaseHistory" class="Presentation.Beans.PurchaseHistoryBean" method="index">
+            <result name="success">/customer/purchaseHistory/index.jsp</result>
+            <result name="empty">/customer/purchaseHistory/empty.jsp</result>
+        </action>
         
     </package>
 		

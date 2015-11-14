@@ -56,31 +56,26 @@ public class Drug implements Serializable {
     
     //Maybe an enum...
     //Antihistamine, etc...
-    @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "drug_classification")
     private String classification;
     
     //Maybe an enum...
     //Syrup, tablet, pill
-    @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "drug_form")
     private String form;
     
     //fever, rhinitis, etc... 
-    @NotNull
     @Size(min = 1, max = 200)
     @Column(name = "drug_use")
     private String use;
     
     //1 pill e/8 hours, etc, 
-    @NotNull
     @Size(min = 1, max = 200)
     @Column(name = "drug_direction")
     private String direction;
     
-    @NotNull
     @Size(min = 1, max = 200)
     @Column(name = "drug_warning")
     private String warning;
@@ -88,7 +83,6 @@ public class Drug implements Serializable {
     @Column(name = "is_prescription_drug")
     private boolean prescriptionDrug;
     
-    @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "drug_side_effect")
     private String sideEffect;

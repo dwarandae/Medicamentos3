@@ -1,6 +1,6 @@
 package Presentation.Beans;
 
-import BusinessLogic.Controllers.CustomerCreationController;
+import BusinessLogic.Controllers.CustomerController;
 import DataAccess.Entities.Customer;
 import com.opensymphony.xwork2.ActionSupport; 
 import org.apache.commons.lang3.StringUtils;
@@ -8,7 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 public class SignUpBean extends ActionSupport {
     
     private Customer customer;
-    private CustomerCreationController customerCreationController;
+    private CustomerController customerController;
         
     public String index() {
         return SUCCESS;
@@ -17,7 +17,7 @@ public class SignUpBean extends ActionSupport {
     public String create() {
         if(!validateData(customer))
             return INPUT;
-        if(customerCreationController.createCustomer(customer))
+        if(customerController.saveCustomer(customer))
             return SUCCESS;
         else
             return ERROR;
@@ -50,11 +50,11 @@ public class SignUpBean extends ActionSupport {
             valid = false;
         }
         if(valid) {
-            if(customerCreationController.isUsernameInvalid(customer.getUsername())){
+            if(customerController.isUsernameInvalid(customer.getUsername())){
                 addFieldError("username","Nombre de usuario ya existente");
                 valid = false;
             }
-            if(customerCreationController.isEmailInvalid(customer.getEmail())){
+            if(customerController.isEmailInvalid(customer.getEmail())){
                 addFieldError("email", "Correo ya existente");
                 valid = false;
             }
@@ -70,12 +70,12 @@ public class SignUpBean extends ActionSupport {
         this.customer = customer;
     }
 
-    public CustomerCreationController getCustomerCreationController() {
-        return customerCreationController;
+    public CustomerController getCustomerController() {
+        return customerController;
     }
 
-    public void setCustomerCreationController(CustomerCreationController customerCreationController) {
-        this.customerCreationController = customerCreationController;
+    public void setCustomerController(CustomerController customerController) {
+        this.customerController = customerController;
     }
     
 }
