@@ -25,10 +25,6 @@ public class SignUpBean extends ActionSupport {
     
     public boolean validateData(Customer customer) {
         boolean valid = true;
-        if(StringUtils.isBlank(customer.getCustomerId())){
-            addFieldError("customerId","Contraseña en blanco");
-            valid = false;
-        }
         if(StringUtils.isBlank(customer.getEmail())){
             addFieldError("email","Correo en blanco");
             valid = false;

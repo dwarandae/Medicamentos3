@@ -27,6 +27,11 @@ public class CustomerService {
     public Customer findCustomerByUsername(String username) {
         return customerDAO.getByUsername(username);
     }
+    
+    @Transactional
+    public Customer findByCustomerId(Long customerId) {
+        return customerDAO.getByCustomerId(customerId);
+    }
 
     public ICustomerDAO getCustomerDAO() {
         return customerDAO;

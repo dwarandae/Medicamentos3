@@ -29,6 +29,13 @@ public class CustomerDAO extends GenericDAO<Customer> implements ICustomerDAO{
     }
     
     @Override
+    public Customer getByCustomerId(Long customerId) {
+        Session session = getSession();
+        Customer customer = (Customer) session.createQuery("FROM Customer WHERE customerId = :customerId").setParameter("customerId", customerId).uniqueResult();
+        return customer;
+    }
+    
+    @Override
     public List<Customer> getAll() {
         Session session = getSession();
         List<Customer> customers = session.createQuery("FROM Customer").list();
