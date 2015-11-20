@@ -8,6 +8,7 @@ public interface ICustomerDAO extends IGenericDAO<Customer> {
     public Customer get(long id);
     public Customer getByUsername(String username);
     public Customer getByEmail(String email);
+    public Customer getByCustomerId(Long customerId);
     public List<Customer> getAll();
     
 }

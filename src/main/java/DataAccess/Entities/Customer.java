@@ -21,9 +21,8 @@ public class Customer extends Account implements Serializable {
     private static final long serialVersionUID = 1L;
  
     @NotNull
-    @Size(min = 1, max = 20)
     @Column(name = "customer_id", unique = true)
-    private String customerId;
+    private long customerId;
     
     @NotNull
     @Column(name = "is_eps_customer")
@@ -36,17 +35,17 @@ public class Customer extends Account implements Serializable {
     public Customer() {
     }
 
-    public Customer(String name, String lastName, String username, String password, String email, String customerId, boolean epsCustomer) {
+    public Customer(String name, String lastName, String username, String password, String email, long customerId, boolean epsCustomer) {
         super(name, lastName, username, password, email);
         this.customerId = customerId;
         this.epsCustomer = epsCustomer;
     }
    
-    public String getCustomerId() {
+    public long getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(String customerId) {
+    public void setCustomerId(long customerId) {
         this.customerId = customerId;
     }
 
