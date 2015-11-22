@@ -18,6 +18,13 @@
         
     <dependencies>
         
+        <!-- LDAP connection -->
+        <dependency>
+            <groupId>com.novell.ldap</groupId>
+            <artifactId>jldap</artifactId>
+            <version>4.3</version>
+        </dependency>
+        
         <!-- Spring dependencies for core/context/Hibernate-ORM -->
         <dependency>
             <groupId>org.springframework</groupId>

@@ -9,18 +9,26 @@ public class SignUpBean extends ActionSupport {
     
     private Customer customer;
     private CustomerController customerController;
+    private final boolean createOnLDAP = true;
         
     public String index() {
         return SUCCESS;
     }
     
     public String create() {
-        if(!validateData(customer))
+        if (!validateData(customer))
             return INPUT;
-        if(customerController.saveCustomer(customer))
-            return SUCCESS;
-        else
-            return ERROR;
+        if (createOnLDAP) {
+            if (customerController.createLDAPUser(customer.getUsername(), customer.getPassword(), customer.getName(), customer.getLastName()) == 0 && customerController.saveCustomer(customer))
+                return SUCCESS;
+            else
+                return ERROR;
+        } else {
+            if (customerController.saveCustomer(customer))
+                return SUCCESS;
+            else
+                return ERROR;
+        }        
     }
     
     public boolean validateData(Customer customer) {
