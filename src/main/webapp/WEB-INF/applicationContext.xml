@@ -65,5 +65,6 @@
     <bean id="drugService" class="BusinessLogic.Services.DrugService" autowire="byName" scope="singleton" />
     <bean id="billService" class="BusinessLogic.Services.BillService" autowire="byName" scope="singleton" />
     <bean id="purchaseService" class="BusinessLogic.Services.PurchaseService" autowire="byName" scope="singleton" />
+    <bean id="ldapOperationsService" class="BusinessLogic.Services.LDAPOperationsService" autowire="byName" scope="singleton" />
 
 </beans>

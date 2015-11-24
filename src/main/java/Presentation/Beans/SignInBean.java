@@ -3,6 +3,7 @@ package Presentation.Beans;
 import BusinessLogic.Controllers.AuthController;
 import BusinessLogic.Controllers.DrugsController;
 import BusinessLogic.Controllers.SessionController;
+import BusinessLogic.Services.LDAPOperationsService;
 import DataAccess.Entities.Account;
 import DataAccess.Entities.Administrator;
 import DataAccess.Entities.Customer;
@@ -24,6 +25,9 @@ public class SignInBean extends ActionSupport implements SessionAware {
     private SessionController sessionController;
     private DrugsController drugsController;
     private Map<String, Object> sessionMap;
+    
+    // LDAP authentication
+    private final boolean useLDAP = true;
 
     private final String NOT_FOUND = "notFound";
     private final String ADMIN = "admin";
@@ -37,22 +41,39 @@ public class SignInBean extends ActionSupport implements SessionAware {
     //This is ugly :S
     //Terrible workaround because roles by inheritance model is not useful...
     public String signIn() {
+        String role;
 
-        String role = null;
         if (!validateData(account)) {
             System.out.println("Datos erróneos");
             return INPUT;
         }
+        
         Account found = authController.findAccount(account);
         if (found == null) {
-            System.out.println("No encontró la cuenta");
-            addFieldError("username", "Username no existe");
+            System.out.println("No se encontró la cuenta en la BD local.");
+            addFieldError("username", "Username no existe en la BD local.");
             return NOT_FOUND;
         }
-        if (!validatePassword(found)) {
-            System.out.println("Contraseña no coincide");
+
+        // If LDAP authentication is used, then the account MUST exist on the
+        // local DB. Otherwise, only the local DB will be used instead for
+        // password validation.
+        if (useLDAP) {
+            int ldapResponse = authController.ldapLogin(account.getUsername(), account.getPassword());
+            if (ldapResponse == 1) {
+                System.out.println("La cuenta o contraseña no coincide (LDAP).");
+                addFieldError("username", "Cuenta o contraseña incorrecta (LDAP).");
+                return INPUT;
+            } else if (ldapResponse == 2) {
+                System.out.println("Conexión con el servidor LDAP fallida.");
+                addFieldError("username", "Conexión con el servidor LDAP fallida.");
+                return INPUT;
+            }
+        } else if (!validatePassword(found)) {
+            System.out.println("Contraseña no coincide con la BD local.");
             return PASS;
         }
+
         if (found instanceof Customer) {
             System.out.println("Cuenta cliente");
             role = CUSTOMER;
@@ -63,7 +84,6 @@ public class SignInBean extends ActionSupport implements SessionAware {
         }
         sessionController.attachSession(sessionMap, role, account);
         return role;
-
     }
 
     public boolean validateData(Account account) {
